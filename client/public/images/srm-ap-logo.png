@@ -1,0 +1,40 @@
+# Role & Objective
+You are a Principal UI/UX Engineer and Expert React/Tailwind Developer. Your task is to execute a comprehensive, industry-grade UI overhaul for the "Academic Project Portal", a project management software built for SRM University-AP. The goal is to transform the application into a polished, enterprise-level SaaS product (comparable to Asana, Jira, or Linear) that establishes immediate institutional trust and usability.
+
+# Global Design System (Tailwind CSS)
+Establish a strict, consistent design system across the entire application:
+1. **Color Palette:**
+   * **Canvas:** `bg-slate-50` for the main app background to reduce eye strain.
+   * **Surfaces:** `bg-white` for all cards, modals, and sidebars.
+   * **Brand/Primary:** Institutional Trust Blue (`bg-blue-600` hover: `bg-blue-700`).
+   * **Text:** `text-slate-900` for headings/primary text, `text-slate-500` for secondary metadata.
+   * **Accents:** Use semantic, muted pastel backgrounds for status tags (e.g., `bg-green-100 text-green-800` for approved, `bg-amber-100 text-amber-800` for pending).
+2. **Structural Elements:**
+   * **Depth:** Use crisp 1px borders (`border-slate-200`) and subtle shadows (`shadow-sm` or `shadow-md`). Remove all heavy shadows, glowing effects, and dark mode backgrounds.
+   * **Spacing:** Utilize generous padding (e.g., `p-6` or `p-8` for cards) and distinct negative space to separate content sections.
+   * **Typography:** Enforce strict font weight hierarchy. Headings should be tight and bold; metadata should be small and uppercase where appropriate.
+
+# Key Pages to Build/Refactor
+
+## 1. Landing Page (Public-Facing)
+Design a high-converting, premium landing page tailored for SRM University-AP.
+* **Hero Section:** Clean, centered text with a bold value proposition (e.g., "Streamlining Academic Excellence at SRM University-AP"). Include a subtle, abstract background pattern (like a faint grid or dot matrix) to feel technical but clean.
+* **Feature Grid:** A 3-column or 2x2 grid highlighting core modules (Project Registry, Team Formation, Rubrics & Evaluation, Mentorship). Use minimalist, monochrome SVG icons.
+* **Call to Action:** A prominent "Access Portal" button that scrolls to or triggers the Auth sequence.
+
+## 2. Authentication / Login Page
+Design a split-screen or elegantly centered login card.
+* **Visuals:** One half of the screen (or a prominent top banner) should feature SRM University-AP branding or a high-quality relevant graphic.
+* **Auth Logic:** Emphasize the "Sign in with Google" button, accompanied by a clear notice: "Restricted portal: Only official @srmap.edu.in accounts permitted."
+* **Role Badging:** Visually indicate that the system supports multiple roles (Student, Faculty Guide, Coordinator, Admin) post-login.
+
+## 3. Application Shell & Dashboards
+* **Navigation:** Implement a clean vertical sidebar or horizontal top-nav with active states clearly marked (e.g., a blue left-border or light blue background). 
+* **Dashboard Widgets:** Standardize all data cards to have a unified header size, top-right action buttons (like filters or "View All"), and consistent data presentation.
+
+# Execution Rules
+1. Work file-by-file. Do not provide truncated code; provide complete, copy-pasteable components.
+2. Start by updating the root layout and global CSS.
+3. Next, build the Landing Page and Auth Page.
+4. Finally, refactor the inner Dashboard layout and key components.
+5. Provide a brief summary of the exact Tailwind classes or structural changes applied before writing the code for each file.

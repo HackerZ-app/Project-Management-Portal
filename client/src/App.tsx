@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/useAuthStore';
 import { Login } from './pages/Login';
+import { Landing } from './pages/Landing';
 import { Dashboard } from './pages/Dashboard';
 import { Profile } from './pages/Profile';
 import { ProjectCatalog } from './pages/ProjectCatalog';
@@ -16,6 +17,12 @@ import { Unauthorized } from './pages/Unauthorized';
 import { NotFound } from './pages/NotFound';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Toaster } from 'react-hot-toast';
+
+const RootRoute: React.FC = () => {
+  const { isAuthenticated, isInitialized } = useAuthStore();
+  if (!isInitialized) return <div className="min-h-screen bg-[#f6f5ef]" />;
+  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <Landing />;
+};
 
 export const App: React.FC = () => {
   const { initializeAuth } = useAuthStore();
@@ -145,8 +152,8 @@ export const App: React.FC = () => {
           }
         />
 
-        {/* Root Redirect */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        {/* Public landing page; authenticated users go directly to their workspace */}
+        <Route path="/" element={<RootRoute />} />
 
         {/* Access Denied & 404 */}
         <Route path="/unauthorized" element={<Unauthorized />} />
