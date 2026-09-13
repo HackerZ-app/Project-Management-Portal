@@ -1,0 +1,55 @@
+name: University Portal CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  backend-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        cache-dependency-path: ./package-lock.json
+
+    - name: Install Dependencies (Root)
+      run: npm ci
+
+    - name: Build TypeScript
+      run: npm run build --prefix server
+
+    - name: Run End-to-End Tests
+      run: npm test --prefix server
+      env:
+        NODE_ENV: test
+        JWT_SECRET: ci_temporary_test_secret_key
+        ALLOWED_EMAIL_DOMAIN: '@srmap.edu.in'
+
+  frontend-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        cache-dependency-path: ./package-lock.json
+
+    - name: Install Dependencies (Root)
+      run: npm ci
+
+    - name: Build Vite Production Bundle
+      run: npm run build --prefix client
