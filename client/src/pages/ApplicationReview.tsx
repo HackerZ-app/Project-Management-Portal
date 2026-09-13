@@ -123,7 +123,7 @@ export const ApplicationReview: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -131,14 +131,14 @@ export const ApplicationReview: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 Application Review Workspace
               </h1>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
                 Faculty Portal
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Evaluate student proposals, inspect academic credentials, and allocate project slots.
             </p>
           </div>
@@ -146,9 +146,9 @@ export const ApplicationReview: React.FC = () => {
           <button
             onClick={fetchApplications}
             disabled={loading}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all self-start sm:self-auto"
+            className="flex items-center gap-2 px-4 py-2 rounded-md text-xs font-medium bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 transition-all self-start sm:self-auto shadow-sm"
           >
-            <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-indigo-400' : ''}`} />
+            <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-blue-600' : ''}`} />
             Refresh Board
           </button>
         </div>
@@ -167,17 +167,17 @@ export const ApplicationReview: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Column 1: Pending Review */}
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-amber-950/20 border border-amber-500/30 text-amber-300">
+            <div className="flex items-center justify-between p-3 rounded-md bg-yellow-50 border border-yellow-200 text-yellow-800">
               <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-amber-400" /> Pending Review
+                <Clock className="w-4 h-4 text-yellow-600" /> Pending Review
               </span>
-              <span className="text-xs font-mono font-bold bg-amber-500/20 px-2 py-0.5 rounded-full">
+              <span className="text-xs font-mono font-bold bg-yellow-100 px-2 py-0.5 rounded-md">
                 {pendingApps.length}
               </span>
             </div>
 
             {pendingApps.length === 0 ? (
-              <div className="p-8 rounded-2xl glass-panel border border-slate-800 text-center text-xs text-slate-500">
+              <div className="p-8 rounded-xl bg-white border border-slate-200 text-center text-xs text-slate-500 shadow-sm">
                 No pending applications awaiting evaluation.
               </div>
             ) : (
@@ -189,25 +189,25 @@ export const ApplicationReview: React.FC = () => {
                 return (
                   <div
                     key={app._id}
-                    className="p-5 rounded-2xl glass-panel border border-slate-800 shadow-xl space-y-4"
+                    className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow space-y-4"
                   >
                     {/* Project & Domain */}
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
                         {app.project.domain}
                       </span>
-                      <h3 className="font-bold text-white text-sm mt-1.5 line-clamp-2">
+                      <h3 className="font-bold text-slate-900 text-sm mt-1.5 line-clamp-2">
                         {app.project.title}
                       </h3>
                     </div>
 
                     {/* Applicant / Group Info */}
-                    <div className="p-3 rounded-xl bg-slate-900/70 border border-slate-800 text-xs space-y-2">
+                    <div className="p-3 rounded-md bg-slate-50 border border-slate-200 text-xs space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="font-semibold text-white">
+                        <span className="font-semibold text-slate-900">
                           {isGroup ? app.group?.name : app.appliedBy?.name}
                         </span>
-                        <span className="text-[10px] uppercase font-bold text-indigo-400">
+                        <span className="text-[10px] uppercase font-bold text-blue-600">
                           {isGroup ? `${members.length} Members` : 'Solo'}
                         </span>
                       </div>
@@ -216,18 +216,18 @@ export const ApplicationReview: React.FC = () => {
                       <div className="space-y-1">
                         {members.map((m) => (
                           <div key={m._id || m.id || m.email} className="flex items-center justify-between text-[11px]">
-                            <span className="text-slate-300 truncate max-w-[150px]">{m.name}</span>
+                            <span className="text-slate-700 truncate max-w-[150px]">{m.name}</span>
                             <span className="font-mono text-slate-500">{m.rollNumber}</span>
                           </div>
                         ))}
                       </div>
 
                       {/* Average CGPA */}
-                      <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
-                        <span className="text-slate-400 text-[11px] flex items-center gap-1">
-                          <GraduationCap className="w-3.5 h-3.5 text-indigo-400" /> Team Average CGPA
+                      <div className="pt-2 border-t border-slate-200 flex items-center justify-between">
+                        <span className="text-slate-600 text-[11px] flex items-center gap-1 font-medium">
+                          <GraduationCap className="w-3.5 h-3.5 text-blue-500" /> Team Average CGPA
                         </span>
-                        <span className="font-bold text-emerald-400 font-mono">
+                        <span className="font-bold text-green-600 font-mono">
                           {avgCgpa.toFixed(2)} / 10.0
                         </span>
                       </div>
@@ -235,20 +235,20 @@ export const ApplicationReview: React.FC = () => {
 
                     {/* Statement of Purpose */}
                     <div>
-                      <span className="text-[11px] font-semibold text-slate-400 block mb-1 flex items-center gap-1">
-                        <FileText className="w-3 h-3 text-indigo-400" /> Statement of Purpose:
+                      <span className="text-[11px] font-semibold text-slate-600 block mb-1 flex items-center gap-1">
+                        <FileText className="w-3 h-3 text-blue-500" /> Statement of Purpose:
                       </span>
-                      <p className="text-xs text-slate-300 bg-slate-900/50 p-2.5 rounded-xl border border-slate-800/80 leading-relaxed max-h-24 overflow-y-auto whitespace-pre-wrap">
+                      <p className="text-xs text-slate-700 bg-white p-2.5 rounded-md border border-slate-200 leading-relaxed max-h-24 overflow-y-auto whitespace-pre-wrap">
                         {app.statementOfPurpose}
                       </p>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="pt-2 flex items-center gap-2 border-t border-slate-800">
+                    <div className="pt-2 flex items-center gap-2 border-t border-slate-100">
                       <button
                         onClick={() => handleApprove(app)}
                         disabled={actionLoading === app._id}
-                        className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-glow transition-all disabled:opacity-50"
+                        className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md text-xs font-bold text-white bg-green-600 hover:bg-green-700 shadow-sm transition-all disabled:opacity-50"
                       >
                         <Check className="w-3.5 h-3.5" /> Approve
                       </button>
@@ -256,7 +256,7 @@ export const ApplicationReview: React.FC = () => {
                       <button
                         onClick={() => setRejectAppId(app._id)}
                         disabled={actionLoading === app._id}
-                        className="px-3 py-2 rounded-xl text-xs font-semibold text-red-400 hover:text-white bg-red-950/40 hover:bg-red-900/60 border border-red-500/30 transition-all disabled:opacity-50"
+                        className="px-3 py-2 rounded-md text-xs font-medium text-red-700 hover:text-red-800 bg-white hover:bg-red-50 border border-red-200 shadow-sm transition-all disabled:opacity-50"
                       >
                         <X className="w-3.5 h-3.5" /> Reject
                       </button>
@@ -269,39 +269,39 @@ export const ApplicationReview: React.FC = () => {
 
           {/* Column 2: Approved / Allocated */}
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 text-emerald-300">
+            <div className="flex items-center justify-between p-3 rounded-md bg-green-50 border border-green-200 text-green-800">
               <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Approved & Allocated
+                <CheckCircle2 className="w-4 h-4 text-green-600" /> Approved & Allocated
               </span>
-              <span className="text-xs font-mono font-bold bg-emerald-500/20 px-2 py-0.5 rounded-full">
+              <span className="text-xs font-mono font-bold bg-green-100 px-2 py-0.5 rounded-md border border-green-200">
                 {approvedApps.length}
               </span>
             </div>
 
             {approvedApps.length === 0 ? (
-              <div className="p-8 rounded-2xl glass-panel border border-slate-800 text-center text-xs text-slate-500">
+              <div className="p-8 rounded-xl bg-white border border-slate-200 text-center text-xs text-slate-500 shadow-sm">
                 No approved applications yet.
               </div>
             ) : (
               approvedApps.map((app) => (
                 <div
                   key={app._id}
-                  className="p-5 rounded-2xl glass-panel border border-emerald-500/30 bg-emerald-950/10 shadow-xl space-y-3"
+                  className="p-5 rounded-xl bg-white border border-green-200 shadow-sm space-y-3"
                 >
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-green-100 text-green-800 border border-green-200">
                       Capacity Reserved
                     </span>
-                    <h3 className="font-bold text-white text-sm mt-1.5 line-clamp-2">
+                    <h3 className="font-bold text-slate-900 text-sm mt-1.5 line-clamp-2">
                       {app.project.title}
                     </h3>
                   </div>
 
-                  <div className="text-xs text-slate-300">
-                    <span className="font-semibold text-emerald-300 block">
+                  <div className="text-xs text-slate-600">
+                    <span className="font-semibold text-green-700 block">
                       {app.group ? app.group.name : app.appliedBy?.name}
                     </span>
-                    <span className="text-[11px] text-slate-400">
+                    <span className="text-[11px] text-slate-500">
                       Approved on{' '}
                       {app.evaluatedAt
                         ? new Date(app.evaluatedAt).toLocaleDateString()
@@ -310,7 +310,7 @@ export const ApplicationReview: React.FC = () => {
                   </div>
 
                   {app.feedback && (
-                    <p className="text-[11px] text-slate-400 italic bg-slate-900/60 p-2 rounded-lg">
+                    <p className="text-[11px] text-slate-600 italic bg-slate-50 p-2 rounded-md border border-slate-100">
                       "{app.feedback}"
                     </p>
                   )}
@@ -321,32 +321,32 @@ export const ApplicationReview: React.FC = () => {
 
           {/* Column 3: Rejected / Withdrawn */}
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 rounded-2xl bg-slate-900 border border-slate-800 text-slate-400">
+            <div className="flex items-center justify-between p-3 rounded-md bg-slate-100 border border-slate-200 text-slate-600">
               <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <XCircle className="w-4 h-4 text-slate-500" /> Rejected / Withdrawn
               </span>
-              <span className="text-xs font-mono font-bold bg-slate-800 px-2 py-0.5 rounded-full text-slate-300">
+              <span className="text-xs font-mono font-bold bg-slate-200 px-2 py-0.5 rounded-md text-slate-700 border border-slate-300">
                 {rejectedApps.length}
               </span>
             </div>
 
             {rejectedApps.length === 0 ? (
-              <div className="p-8 rounded-2xl glass-panel border border-slate-800 text-center text-xs text-slate-500">
+              <div className="p-8 rounded-xl bg-white border border-slate-200 text-center text-xs text-slate-500 shadow-sm">
                 No rejected applications.
               </div>
             ) : (
               rejectedApps.map((app) => (
                 <div
                   key={app._id}
-                  className="p-5 rounded-2xl glass-panel border border-slate-800/80 opacity-75 space-y-2"
+                  className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm opacity-75 space-y-2"
                 >
-                  <h3 className="font-bold text-slate-300 text-xs line-clamp-1">
+                  <h3 className="font-bold text-slate-700 text-xs line-clamp-1">
                     {app.project.title}
                   </h3>
-                  <span className="text-xs text-slate-400 block">
+                  <span className="text-xs text-slate-500 block">
                     Applicant: {app.group ? app.group.name : app.appliedBy?.name}
                   </span>
-                  <p className="text-[11px] text-red-400/90 bg-red-950/20 p-2 rounded-lg border border-red-950/40">
+                  <p className="text-[11px] text-red-700 bg-red-50 p-2 rounded-md border border-red-100">
                     {app.feedback || 'Application declined.'}
                   </p>
                 </div>
@@ -357,23 +357,23 @@ export const ApplicationReview: React.FC = () => {
 
         {/* Reject Modal with Feedback */}
         {rejectAppId && (
-          <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="max-w-md w-full rounded-3xl glass-panel border border-slate-700 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="max-w-md w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative">
               <button
                 onClick={() => setRejectAppId(null)}
-                className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10"
+                className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <h2 className="text-lg font-bold text-white mb-2">Decline Application</h2>
-              <p className="text-xs text-slate-400 mb-4">
+              <h2 className="text-lg font-bold text-slate-900 mb-2">Decline Application</h2>
+              <p className="text-xs text-slate-500 mb-4">
                 Provide feedback to the student team regarding prerequisites, capacity, or problem alignment.
               </p>
 
               <form onSubmit={handleRejectSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Faculty Feedback / Reason for Decline
                   </label>
                   <textarea
@@ -381,7 +381,7 @@ export const ApplicationReview: React.FC = () => {
                     value={rejectReason}
                     onChange={(e) => setRejectReason(e.target.value)}
                     placeholder="e.g. Project scope requires advanced computer vision coursework not yet completed by applicants..."
-                    className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+                    className="w-full px-3.5 py-2.5 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500"
                   />
                 </div>
 
@@ -389,13 +389,13 @@ export const ApplicationReview: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setRejectAppId(null)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white"
+                    className="px-4 py-2 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-red-600 hover:bg-red-500 shadow-glow"
+                    className="px-5 py-2 rounded-md text-xs font-medium text-white bg-red-600 hover:bg-red-700 shadow-sm"
                   >
                     Confirm Rejection
                   </button>

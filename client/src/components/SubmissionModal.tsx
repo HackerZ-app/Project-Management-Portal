@@ -147,13 +147,13 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="max-w-xl w-full rounded-3xl glass-panel border border-slate-700/80 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="max-w-xl w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
           disabled={loading}
-          className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+          className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -161,23 +161,23 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
         {/* Modal Header */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
               Milestone Submission
             </span>
             {isLate && (
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30 flex items-center gap-1">
-                <Clock className="w-3 h-3 text-red-400" /> Past Deadline
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-100 text-red-800 border border-red-200 flex items-center gap-1">
+                <Clock className="w-3 h-3 text-red-600" /> Past Deadline
               </span>
             )}
           </div>
-          <h2 className="text-xl font-bold text-white tracking-tight">{assessment.title}</h2>
-          <p className="text-xs text-slate-400 mt-1 line-clamp-2">{assessment.description}</p>
+          <h2 className="text-xl font-bold text-slate-900 tracking-tight">{assessment.title}</h2>
+          <p className="text-xs text-slate-500 mt-1 line-clamp-2">{assessment.description}</p>
         </div>
 
         {/* Deadline Notice */}
-        <div className="mb-6 p-3 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs">
-          <span className="text-slate-400">Deadline:</span>
-          <span className="font-mono text-slate-200 font-semibold">
+        <div className="mb-6 p-3 rounded-md bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
+          <span className="text-slate-500">Deadline:</span>
+          <span className="font-mono text-slate-900 font-semibold">
             {new Date(assessment.deadline).toLocaleString()}
           </span>
         </div>
@@ -198,8 +198,8 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* GitHub Repository URL */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-              <Github className="w-4 h-4 text-slate-400" /> GitHub Repository URL
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5 flex items-center gap-1.5">
+              <Github className="w-4 h-4 text-slate-500" /> GitHub Repository URL
             </label>
             <input
               type="url"
@@ -208,7 +208,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
               value={githubUrl}
               onChange={(e) => setGithubUrl(e.target.value)}
               placeholder="https://github.com/organization/repository-name"
-              className="w-full px-4 py-2.5 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full px-4 py-2.5 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
             />
             <span className="text-[11px] text-slate-500 mt-1 block">
               Provide the official public or accessible repository link for your project.
@@ -217,8 +217,8 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
 
           {/* File Upload Zone */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-              <FileText className="w-4 h-4 text-slate-400" /> Milestone Deliverable (.pdf, .docx,
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5 flex items-center gap-1.5">
+              <FileText className="w-4 h-4 text-slate-500" /> Milestone Deliverable (.pdf, .docx,
               .zip)
             </label>
 
@@ -238,14 +238,14 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                 onDragLeave={handleDrag}
                 onDrop={handleDrop}
                 onClick={() => fileInputRef.current?.click()}
-                className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all ${
+                className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all ${
                   dragActive
-                    ? 'border-indigo-500 bg-indigo-950/20'
-                    : 'border-slate-700 hover:border-slate-500 bg-slate-900/40'
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-slate-300 hover:border-slate-400 bg-slate-50'
                 }`}
               >
-                <UploadCloud className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
-                <p className="text-xs font-semibold text-slate-300">
+                <UploadCloud className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                <p className="text-xs font-semibold text-slate-700">
                   Click to select file or drag & drop here
                 </p>
                 <p className="text-[11px] text-slate-500 mt-1">
@@ -253,16 +253,16 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                 </p>
               </div>
             ) : (
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-between">
+              <div className="p-4 rounded-md bg-white border border-slate-200 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-300">
+                  <div className="w-10 h-10 rounded-md bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
                     <FileText className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-white truncate max-w-[240px]">
+                    <p className="text-xs font-bold text-slate-900 truncate max-w-[240px]">
                       {file.name}
                     </p>
-                    <p className="text-[11px] text-slate-400">{formatFileSize(file.size)}</p>
+                    <p className="text-[11px] text-slate-500">{formatFileSize(file.size)}</p>
                   </div>
                 </div>
 
@@ -270,7 +270,7 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
                   type="button"
                   disabled={loading}
                   onClick={() => setFile(null)}
-                  className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                  className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -280,29 +280,29 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
 
           {/* Lateness Warning */}
           {isLate && (
-            <div className="p-3 rounded-xl bg-red-950/20 border border-red-500/30 flex items-start gap-2.5">
-              <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-              <p className="text-[11px] text-red-300 leading-relaxed">
+            <div className="p-3 rounded-md bg-red-50 border border-red-200 flex items-start gap-2.5">
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+              <p className="text-[11px] text-red-800 leading-relaxed">
                 Notice: The deadline for this assessment has passed. Your submission will be recorded
-                and automatically flagged as <strong className="text-red-200">Late</strong>.
+                and automatically flagged as <strong className="text-red-900">Late</strong>.
               </p>
             </div>
           )}
 
           {/* Action Buttons */}
-          <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-800">
+          <div className="pt-2 flex items-center justify-end gap-3 border-t border-slate-100">
             <button
               type="button"
               disabled={loading}
               onClick={onClose}
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition-colors"
+              className="px-4 py-2.5 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading || !file || !githubUrl.trim()}
-              className="px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow flex items-center gap-2 transition-all disabled:opacity-50"
+              className="px-6 py-2.5 rounded-md text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm flex items-center gap-2 transition-all disabled:opacity-50"
             >
               {loading ? (
                 <>

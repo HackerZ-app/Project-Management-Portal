@@ -170,7 +170,7 @@ export const ProjectCatalog: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -187,10 +187,10 @@ export const ProjectCatalog: React.FC = () => {
         {/* Header Title & Actions */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               Academic Project Catalog
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Explore approved university capstone, mini, and research projects.
             </p>
           </div>
@@ -203,10 +203,10 @@ export const ProjectCatalog: React.FC = () => {
                     setFacultyFilter(facultyFilter === 'all' ? 'mine' : 'all');
                     setPage(1);
                   }}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                  className={`px-4 py-2 rounded-md text-xs font-semibold border transition-all ${
                     facultyFilter === 'mine'
-                      ? 'bg-purple-600 text-white border-purple-500 shadow-glow'
-                      : 'bg-slate-900 border-slate-800 text-slate-300 hover:text-white'
+                      ? 'bg-purple-600 text-white border-purple-600 shadow-sm'
+                      : 'bg-white border-slate-200 text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   {facultyFilter === 'mine' ? 'Showing My Proposals' : 'My Proposals'}
@@ -214,7 +214,7 @@ export const ProjectCatalog: React.FC = () => {
 
                 <button
                   onClick={() => navigate('/projects/create')}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow transition-all"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all"
                 >
                   <Plus className="w-4 h-4" /> Propose Project
                 </button>
@@ -234,12 +234,12 @@ export const ProjectCatalog: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects by keywords, technical stack, problem statement..."
-                className="w-full pl-10 pr-4 py-2.5 text-xs rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-full pl-10 pr-4 py-2.5 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
               />
             </div>
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
+              className="px-5 py-2.5 rounded-md text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-colors"
             >
               Search
             </button>
@@ -254,10 +254,10 @@ export const ProjectCatalog: React.FC = () => {
                   setSelectedDomain(domain);
                   setPage(1);
                 }}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+                className={`px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-all ${
                   selectedDomain === domain
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                    ? 'bg-blue-600 text-white border border-blue-600'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
                 }`}
               >
                 {domain}
@@ -277,10 +277,10 @@ export const ProjectCatalog: React.FC = () => {
                   setSelectedCourseType(type);
                   setPage(1);
                 }}
-                className={`px-2.5 py-1 rounded-md text-xs transition-colors ${
+                className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                   selectedCourseType === type
-                    ? 'bg-slate-800 text-indigo-400 font-semibold border border-indigo-500/30'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                    : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 {type}
@@ -290,9 +290,9 @@ export const ProjectCatalog: React.FC = () => {
         </div>
 
         {/* Results Counter */}
-        <div className="flex items-center justify-between text-xs text-slate-400 mb-4">
+        <div className="flex items-center justify-between text-xs text-slate-500 mb-4">
           <span>
-            Found <strong className="text-white">{totalCount}</strong> projects available
+            Found <strong className="text-slate-900">{totalCount}</strong> projects available
           </span>
           {totalPages > 1 && (
             <span>
@@ -307,15 +307,15 @@ export const ProjectCatalog: React.FC = () => {
             {[1, 2, 3, 4, 5, 6].map((idx) => (
               <div
                 key={idx}
-                className="h-64 rounded-2xl glass-panel border border-slate-800 animate-pulse"
+                className="h-64 rounded-xl bg-white border border-slate-200 animate-pulse"
               />
             ))}
           </div>
         ) : projects.length === 0 ? (
-          <div className="p-12 text-center rounded-3xl glass-panel border border-slate-800">
-            <BookOpen className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-white">No Projects Found</h3>
-            <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+          <div className="p-12 text-center rounded-xl bg-white border border-slate-200 shadow-sm">
+            <BookOpen className="w-12 h-12 text-slate-400 mx-auto mb-3" />
+            <h3 className="text-base font-bold text-slate-900">No Projects Found</h3>
+            <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
               No matching academic projects align with your filter criteria. Try clearing search filters or check back soon.
             </p>
           </div>
@@ -337,21 +337,21 @@ export const ProjectCatalog: React.FC = () => {
               return (
                 <div
                   key={project._id}
-                  className="rounded-2xl glass-panel glass-panel-hover border border-slate-800 p-6 flex flex-col justify-between"
+                  className="rounded-xl bg-white hover:shadow-md border border-slate-200 p-6 flex flex-col justify-between transition-shadow shadow-sm"
                 >
                   <div>
                     {/* Tags */}
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 truncate max-w-[160px]">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200 truncate max-w-[160px]">
                         {project.domain}
                       </span>
                       <span
-                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${
+                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border ${
                           project.status === 'allocated'
-                            ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                            ? 'bg-purple-100 text-purple-800 border-purple-200'
                             : project.status === 'draft'
-                            ? 'bg-amber-500/20 text-amber-300'
-                            : 'bg-emerald-500/20 text-emerald-300'
+                            ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
+                            : 'bg-green-100 text-green-800 border-green-200'
                         }`}
                       >
                         {project.status === 'allocated'
@@ -363,18 +363,18 @@ export const ProjectCatalog: React.FC = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-bold text-white text-base leading-snug mb-2 line-clamp-2">
+                    <h3 className="font-bold text-slate-900 text-base leading-snug mb-2 line-clamp-2">
                       {project.title}
                     </h3>
 
                     {/* Description snippet */}
-                    <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed mb-4">
+                    <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed mb-4">
                       {project.description}
                     </p>
 
                     {/* Requirements */}
                     {project.requirements && (
-                      <div className="mb-4 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+                      <div className="mb-4 text-[11px] text-slate-700 bg-slate-50 p-2.5 rounded-md border border-slate-200">
                         <span className="text-slate-500 block font-medium mb-0.5">Requirements:</span>
                         <p className="line-clamp-2">{project.requirements}</p>
                       </div>
@@ -383,31 +383,31 @@ export const ProjectCatalog: React.FC = () => {
 
                   <div>
                     {/* Faculty Mentor & Details */}
-                    <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 mb-4">
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 mb-4">
                       <div className="flex items-center gap-2">
                         {faculty?.avatar ? (
                           <img
                             src={faculty.avatar}
                             alt={faculty.name}
-                            className="w-6 h-6 rounded-full border border-slate-700"
+                            className="w-6 h-6 rounded-full border border-slate-200"
                           />
                         ) : (
-                          <div className="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-slate-300">
+                          <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
                             <UserIcon className="w-3.5 h-3.5" />
                           </div>
                         )}
-                        <span className="text-slate-300 font-medium truncate max-w-[120px]">
+                        <span className="text-slate-700 font-medium truncate max-w-[120px]">
                           {faculty?.name || 'Faculty Guide'}
                         </span>
                       </div>
 
                       <div className="flex items-center gap-3">
-                        <span className="flex items-center gap-1 font-mono text-[11px]">
-                          <Users className="w-3.5 h-3.5 text-indigo-400" />
+                        <span className="flex items-center gap-1 font-mono text-[11px] text-slate-600">
+                          <Users className="w-3.5 h-3.5 text-blue-500" />
                           {availableSlots}/{project.maxStudents} open
                         </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5 text-amber-400" />
+                        <span className="flex items-center gap-1 text-slate-600">
+                          <Calendar className="w-3.5 h-3.5 text-yellow-500" />
                           {daysLeft > 0 ? `${daysLeft}d left` : 'Closed'}
                         </span>
                       </div>
@@ -416,7 +416,7 @@ export const ProjectCatalog: React.FC = () => {
                     <div className="flex gap-2">
                       <button
                         onClick={() => setSelectedProject(project)}
-                        className="flex-1 py-2 rounded-xl text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
+                        className="flex-1 py-2 rounded-md text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 transition-colors"
                       >
                         Details
                       </button>
@@ -424,7 +424,7 @@ export const ProjectCatalog: React.FC = () => {
                       {user?.role === 'student' && project.status === 'published' && availableSlots > 0 && (
                         <button
                           onClick={() => handleOpenApply(project)}
-                          className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow transition-all flex items-center gap-1.5"
+                          className="px-4 py-2 rounded-md text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all flex items-center gap-1.5"
                         >
                           <Send className="w-3 h-3" /> Apply
                         </button>
@@ -443,17 +443,17 @@ export const ProjectCatalog: React.FC = () => {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:text-white disabled:opacity-40 transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-600 hover:text-slate-900 disabled:opacity-50 transition-colors"
             >
               <ChevronLeft className="w-4 h-4" /> Previous
             </button>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-500">
               Page {page} of {totalPages}
             </span>
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-900 border border-slate-800 text-slate-300 hover:text-white disabled:opacity-40 transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-600 hover:text-slate-900 disabled:opacity-50 transition-colors"
             >
               Next <ChevronRight className="w-4 h-4" />
             </button>
@@ -462,55 +462,55 @@ export const ProjectCatalog: React.FC = () => {
 
         {/* Detailed Project Modal */}
         {selectedProject && (
-          <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="max-w-2xl w-full rounded-3xl glass-panel border border-slate-700 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="max-w-2xl w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative max-h-[90vh] overflow-y-auto">
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10"
+                className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100"
               >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
                   {selectedProject.domain}
                 </span>
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-800 text-slate-300">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
                   {selectedProject.courseType}
                 </span>
               </div>
 
-              <h2 className="text-xl font-bold text-white mb-4">{selectedProject.title}</h2>
+              <h2 className="text-xl font-bold text-slate-900 mb-4">{selectedProject.title}</h2>
 
-              <div className="space-y-4 text-xs text-slate-300">
+              <div className="space-y-4 text-xs text-slate-700">
                 <div>
-                  <h4 className="font-semibold text-slate-400 mb-1 flex items-center gap-1.5">
-                    <FileText className="w-4 h-4 text-indigo-400" /> Full Problem Scope & Methodology
+                  <h4 className="font-semibold text-slate-800 mb-1 flex items-center gap-1.5">
+                    <FileText className="w-4 h-4 text-blue-600" /> Full Problem Scope & Methodology
                   </h4>
-                  <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 leading-relaxed whitespace-pre-wrap">
+                  <div className="p-4 rounded-md bg-slate-50 border border-slate-200 leading-relaxed whitespace-pre-wrap">
                     {selectedProject.description}
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-400 mb-1 flex items-center gap-1.5">
-                    <BookOpen className="w-4 h-4 text-indigo-400" /> Required Skills & Prerequisites
+                  <h4 className="font-semibold text-slate-800 mb-1 flex items-center gap-1.5">
+                    <BookOpen className="w-4 h-4 text-blue-600" /> Required Skills & Prerequisites
                   </h4>
-                  <p className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <p className="p-3 rounded-md bg-slate-50 border border-slate-200">
                     {selectedProject.requirements || 'Standard prerequisites apply.'}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 pt-2">
-                  <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <div className="p-3 rounded-md bg-slate-50 border border-slate-200">
                     <span className="text-slate-500 block mb-0.5">Capacity Allocation</span>
-                    <span className="font-bold text-white">
+                    <span className="font-bold text-slate-900">
                       {selectedProject.currentStudents || 0} / {selectedProject.maxStudents} Students Enrolled
                     </span>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                  <div className="p-3 rounded-md bg-slate-50 border border-slate-200">
                     <span className="text-slate-500 block mb-0.5">Application Deadline</span>
-                    <span className="font-bold text-amber-400">
+                    <span className="font-bold text-yellow-600">
                       {new Date(selectedProject.deadline).toLocaleDateString(undefined, {
                         year: 'numeric',
                         month: 'short',
@@ -521,17 +521,17 @@ export const ProjectCatalog: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-800 flex justify-end gap-3">
+              <div className="mt-6 pt-4 border-t border-slate-200 flex justify-end gap-3">
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300"
+                  className="px-4 py-2 rounded-md text-xs font-medium bg-white border border-slate-200 hover:bg-slate-50 text-slate-700"
                 >
                   Close
                 </button>
                 {user?.role === 'student' && selectedProject.status === 'published' && (
                   <button
                     onClick={() => handleOpenApply(selectedProject)}
-                    className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow flex items-center gap-1.5"
+                    className="px-5 py-2 rounded-md text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm flex items-center gap-1.5"
                   >
                     <Send className="w-3.5 h-3.5" /> Apply for Project
                   </button>
@@ -543,32 +543,32 @@ export const ProjectCatalog: React.FC = () => {
 
         {/* Phase 3: Project Application Modal */}
         {applyProject && (
-          <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="max-w-lg w-full rounded-3xl glass-panel border border-slate-700 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="max-w-lg w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative">
               <button
                 onClick={() => setApplyProject(null)}
-                className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10"
+                className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <h2 className="text-xl font-bold text-white mb-1">Apply for Academic Project</h2>
-              <p className="text-xs text-slate-400 mb-4 line-clamp-1">{applyProject.title}</p>
+              <h2 className="text-xl font-bold text-slate-900 mb-1">Apply for Academic Project</h2>
+              <p className="text-xs text-slate-500 mb-4 line-clamp-1">{applyProject.title}</p>
 
               <form onSubmit={handleApplySubmit} className="space-y-4">
                 {/* Mode Selector: Solo vs Group */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Application Mode
                   </label>
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       type="button"
                       onClick={() => setApplyMode('solo')}
-                      className={`py-2 px-3 rounded-xl text-xs font-semibold border transition-all ${
+                      className={`py-2 px-3 rounded-md text-xs font-medium border transition-all ${
                         applyMode === 'solo'
-                          ? 'bg-indigo-600 text-white border-indigo-500 shadow-sm'
-                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
+                          ? 'bg-blue-50 text-blue-700 border-blue-200 shadow-sm'
+                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       Individual / Solo (1 Student)
@@ -576,10 +576,10 @@ export const ProjectCatalog: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setApplyMode('group')}
-                      className={`py-2 px-3 rounded-xl text-xs font-semibold border transition-all ${
+                      className={`py-2 px-3 rounded-md text-xs font-medium border transition-all ${
                         applyMode === 'group'
-                          ? 'bg-indigo-600 text-white border-indigo-500 shadow-sm'
-                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
+                          ? 'bg-blue-50 text-blue-700 border-blue-200 shadow-sm'
+                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       Apply with Team Roster
@@ -590,7 +590,7 @@ export const ProjectCatalog: React.FC = () => {
                 {/* If Group Mode: Choose locked group */}
                 {applyMode === 'group' && (
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Select Locked Team ({applyProject.courseType})
                     </label>
                     {availableGroups.length > 0 ? (
@@ -598,7 +598,7 @@ export const ProjectCatalog: React.FC = () => {
                         value={selectedGroupId}
                         onChange={(e) => setSelectedGroupId(e.target.value)}
                         required
-                        className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-indigo-500"
+                        className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                       >
                         {availableGroups.map((g) => (
                           <option key={g._id} value={g._id}>
@@ -607,12 +607,12 @@ export const ProjectCatalog: React.FC = () => {
                         ))}
                       </select>
                     ) : (
-                      <div className="p-3 rounded-xl bg-amber-950/30 border border-amber-500/30 text-xs text-amber-200">
-                        <AlertCircle className="w-4 h-4 text-amber-400 inline mr-1.5" />
+                      <div className="p-3 rounded-md bg-yellow-50 border border-yellow-200 text-xs text-yellow-800">
+                        <AlertCircle className="w-4 h-4 text-yellow-600 inline mr-1.5" />
                         No locked groups found for {applyProject.courseType}. Go to{' '}
                         <span
                           onClick={() => navigate('/groups')}
-                          className="text-white underline cursor-pointer font-semibold"
+                          className="text-yellow-900 underline cursor-pointer font-semibold"
                         >
                           My Groups
                         </span>{' '}
@@ -624,8 +624,8 @@ export const ProjectCatalog: React.FC = () => {
 
                 {/* Statement of Purpose */}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Statement of Purpose (SOP) <span className="text-red-400">*</span>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    Statement of Purpose (SOP) <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     rows={4}
@@ -634,7 +634,7 @@ export const ProjectCatalog: React.FC = () => {
                     required
                     minLength={50}
                     placeholder="Briefly state your technical background, research motivation, proposed approach, and why your team is well-suited for this project (minimum 50 characters)..."
-                    className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2.5 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                   <span className="text-[10px] text-slate-500">
                     {statementOfPurpose.length} / 50 characters minimum
@@ -645,7 +645,7 @@ export const ProjectCatalog: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setApplyProject(null)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white"
+                    className="px-4 py-2 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                   >
                     Cancel
                   </button>
@@ -656,7 +656,7 @@ export const ProjectCatalog: React.FC = () => {
                       statementOfPurpose.length < 50 ||
                       (applyMode === 'group' && availableGroups.length === 0)
                     }
-                    className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow disabled:opacity-50 flex items-center gap-1.5"
+                    className="px-5 py-2 rounded-md text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm disabled:opacity-50 flex items-center gap-1.5"
                   >
                     <Send className="w-3.5 h-3.5" />
                     {submittingApp ? 'Submitting...' : 'Submit Application'}
@@ -670,3 +670,5 @@ export const ProjectCatalog: React.FC = () => {
     </div>
   );
 };
+
+export default ProjectCatalog;

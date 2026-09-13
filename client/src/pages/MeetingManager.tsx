@@ -192,23 +192,23 @@ export const MeetingManager: React.FC = () => {
   const completedMeetings = meetings.filter((m) => m.status === 'completed');
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-slate-800">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-slate-200">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-5 h-5 text-indigo-400" />
-              <span className="text-xs uppercase font-bold tracking-widest text-indigo-400">
+              <Calendar className="w-5 h-5 text-blue-600" />
+              <span className="text-xs uppercase font-bold tracking-widest text-blue-600">
                 Module 10 & 11 • Mentorship Workspace
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Meetings & Minutes Manager
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Schedule live sync calls, broadcast Google Meet links, and log historical meeting minutes.
             </p>
           </div>
@@ -217,7 +217,7 @@ export const MeetingManager: React.FC = () => {
             {projects.length > 0 && (
               <button
                 onClick={() => setShowScheduleModal(true)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-glow transition-all"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow-sm transition-all"
               >
                 <Plus className="w-4 h-4" /> Schedule Meeting
               </button>
@@ -237,18 +237,18 @@ export const MeetingManager: React.FC = () => {
         )}
 
         {/* Project Selector Bar */}
-        <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+        <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
           <div className="flex items-center gap-3">
-            <BookOpen className="w-5 h-5 text-indigo-400 shrink-0" />
+            <BookOpen className="w-5 h-5 text-blue-600 shrink-0" />
             <div>
-              <span className="text-xs text-slate-400 block">Select Active Project:</span>
+              <span className="text-xs text-slate-500 block">Select Active Project:</span>
               <select
                 value={selectedProjectId}
                 onChange={(e) => setSelectedProjectId(e.target.value)}
-                className="mt-0.5 text-sm font-semibold bg-transparent text-white border-0 focus:ring-0 cursor-pointer"
+                className="mt-0.5 text-sm font-bold bg-transparent text-slate-900 border-0 focus:ring-0 cursor-pointer focus:outline-none"
               >
                 {projects.map((p) => (
-                  <option key={p._id} value={p._id} className="bg-slate-900 text-white">
+                  <option key={p._id} value={p._id} className="bg-white text-slate-900">
                     {p.title} ({p.courseType})
                   </option>
                 ))}
@@ -260,7 +260,7 @@ export const MeetingManager: React.FC = () => {
             <button
               onClick={() => selectedProjectId && fetchProjectMeetings(selectedProjectId)}
               disabled={meetingsLoading}
-              className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              className="p-2 rounded-md bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors"
               title="Refresh Meetings"
             >
               <RotateCw className={`w-4 h-4 ${meetingsLoading ? 'animate-spin' : ''}`} />
@@ -272,10 +272,10 @@ export const MeetingManager: React.FC = () => {
         {loading ? (
           <div className="mt-12 text-center text-slate-500 text-sm">Loading projects...</div>
         ) : projects.length === 0 ? (
-          <div className="mt-12 text-center p-12 rounded-3xl glass-panel border border-slate-800">
-            <Calendar className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-white mb-1">No Projects Found</h3>
-            <p className="text-xs text-slate-400">
+          <div className="mt-12 text-center p-12 rounded-xl bg-white border border-slate-200 shadow-sm">
+            <Calendar className="w-12 h-12 text-slate-400 mx-auto mb-3" />
+            <h3 className="text-base font-bold text-slate-900 mb-1">No Projects Found</h3>
+            <p className="text-xs text-slate-500">
               You do not have any active mentoring projects assigned yet.
             </p>
           </div>
@@ -284,15 +284,15 @@ export const MeetingManager: React.FC = () => {
             {/* Upcoming / Scheduled Meetings */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Clock className="w-4 h-4 text-indigo-400" />
-                <h2 className="text-base font-bold text-white">Scheduled Sync Sessions</h2>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold">
+                <Clock className="w-4 h-4 text-blue-600" />
+                <h2 className="text-base font-bold text-slate-900">Scheduled Sync Sessions</h2>
+                <span className="text-xs px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 font-semibold border border-blue-200">
                   {scheduledMeetings.length}
                 </span>
               </div>
 
               {scheduledMeetings.length === 0 ? (
-                <div className="p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 text-center text-xs text-slate-500">
+                <div className="p-8 rounded-md bg-slate-50 border border-slate-200 text-center text-xs text-slate-500">
                   No upcoming meetings scheduled for this project.
                 </div>
               ) : (
@@ -300,41 +300,41 @@ export const MeetingManager: React.FC = () => {
                   {scheduledMeetings.map((meeting) => (
                     <div
                       key={meeting._id}
-                      className="p-5 rounded-2xl glass-panel border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between"
+                      className="p-5 rounded-xl bg-white border border-slate-200 hover:shadow-md transition-all flex flex-col justify-between shadow-sm"
                     >
                       <div>
                         <div className="flex items-start justify-between gap-2 mb-2">
-                          <h3 className="font-bold text-white text-sm leading-snug">
+                          <h3 className="font-bold text-slate-900 text-sm leading-snug">
                             {meeting.title}
                           </h3>
-                          <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                          <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 border border-blue-200">
                             Scheduled
                           </span>
                         </div>
-                        <p className="text-xs text-slate-300 mb-3 line-clamp-3">
+                        <p className="text-xs text-slate-600 mb-3 line-clamp-3">
                           {meeting.agenda}
                         </p>
-                        <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
-                          <Clock className="w-3.5 h-3.5 text-indigo-400" />
-                          <span>{new Date(meeting.scheduledAt).toLocaleString()}</span>
+                        <div className="flex items-center gap-2 text-xs text-slate-500 mb-4">
+                          <Clock className="w-3.5 h-3.5 text-blue-600" />
+                          <span className="font-medium">{new Date(meeting.scheduledAt).toLocaleString()}</span>
                         </div>
                       </div>
 
-                      <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                      <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
                         <a
                           href={meeting.meetingLink}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-glow transition-all"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium text-xs shadow-sm transition-all"
                         >
                           <Video className="w-3.5 h-3.5" /> Join Call
                         </a>
 
                         <button
                           onClick={() => openMinutesModal(meeting)}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-indigo-300 hover:text-white font-semibold text-xs border border-slate-700 transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-200 transition-colors shadow-sm"
                         >
-                          <FileText className="w-3.5 h-3.5" /> Log Minutes
+                          <FileText className="w-3.5 h-3.5 text-slate-500" /> Log Minutes
                         </button>
                       </div>
                     </div>
@@ -346,15 +346,15 @@ export const MeetingManager: React.FC = () => {
             {/* Historical Completed Meetings & Minutes */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <h2 className="text-base font-bold text-white">Completed Meetings & Minutes</h2>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold">
+                <CheckCircle2 className="w-4 h-4 text-green-600" />
+                <h2 className="text-base font-bold text-slate-900">Completed Meetings & Minutes</h2>
+                <span className="text-xs px-2 py-0.5 rounded-md bg-green-100 text-green-800 border border-green-200 font-semibold">
                   {completedMeetings.length}
                 </span>
               </div>
 
               {completedMeetings.length === 0 ? (
-                <div className="p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 text-center text-xs text-slate-500">
+                <div className="p-8 rounded-md bg-slate-50 border border-slate-200 text-center text-xs text-slate-500">
                   No completed meeting logs recorded yet.
                 </div>
               ) : (
@@ -362,34 +362,34 @@ export const MeetingManager: React.FC = () => {
                   {completedMeetings.map((meeting) => (
                     <div
                       key={meeting._id}
-                      className="p-5 rounded-2xl glass-panel border border-slate-800 space-y-3"
+                      className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-3"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="font-bold text-white text-sm">{meeting.title}</h3>
-                            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                            <h3 className="font-bold text-slate-900 text-sm">{meeting.title}</h3>
+                            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-green-100 text-green-800 border border-green-200">
                               Completed
                             </span>
                           </div>
-                          <span className="text-xs text-slate-400 mt-0.5 block">
+                          <span className="text-xs text-slate-500 mt-0.5 block">
                             Conducted on: {new Date(meeting.scheduledAt).toLocaleString()}
                           </span>
                         </div>
 
                         <button
                           onClick={() => openMinutesModal(meeting)}
-                          className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors self-start sm:self-center"
+                          className="text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors self-start sm:self-center"
                         >
                           Edit Minutes
                         </button>
                       </div>
 
-                      <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/80 text-xs">
-                        <span className="font-bold text-slate-300 block mb-1">
+                      <div className="p-3.5 rounded-md bg-slate-50 border border-slate-200 text-xs">
+                        <span className="font-bold text-slate-700 block mb-1">
                           Recorded Meeting Minutes & Action Items:
                         </span>
-                        <p className="text-slate-300 whitespace-pre-wrap leading-relaxed">
+                        <p className="text-slate-700 whitespace-pre-wrap leading-relaxed">
                           {meeting.meetingMinutes || 'No detailed minutes recorded.'}
                         </p>
                       </div>
@@ -403,21 +403,21 @@ export const MeetingManager: React.FC = () => {
 
         {/* Schedule Meeting Modal */}
         {showScheduleModal && (
-          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="max-w-md w-full rounded-3xl glass-panel border border-slate-700 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="max-w-md w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative">
               <button
                 onClick={() => setShowScheduleModal(false)}
                 disabled={scheduling}
-                className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-2 mb-1">
-                <Calendar className="w-5 h-5 text-indigo-400" />
-                <h2 className="text-xl font-bold text-white">Schedule Sync Session</h2>
+                <Calendar className="w-5 h-5 text-blue-600" />
+                <h2 className="text-xl font-bold text-slate-900">Schedule Sync Session</h2>
               </div>
-              <p className="text-xs text-slate-400 mb-6">
+              <p className="text-xs text-slate-500 mb-6">
                 Set up a project review meeting. All allocated students will receive real-time notifications.
               </p>
 
@@ -433,7 +433,7 @@ export const MeetingManager: React.FC = () => {
 
               <form onSubmit={handleScheduleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Meeting Title
                   </label>
                   <input
@@ -442,12 +442,12 @@ export const MeetingManager: React.FC = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="e.g. Sprint 2 Architectural Review & Code Walkthrough"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Agenda & Objectives
                   </label>
                   <textarea
@@ -456,12 +456,12 @@ export const MeetingManager: React.FC = () => {
                     value={agenda}
                     onChange={(e) => setAgenda(e.target.value)}
                     placeholder="Describe topics to discuss, demo prerequisites, and student deliverables..."
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Scheduled Date & Time
                   </label>
                   <input
@@ -469,12 +469,12 @@ export const MeetingManager: React.FC = () => {
                     required
                     value={scheduledAt}
                     onChange={(e) => setScheduledAt(e.target.value)}
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Meeting Link (Optional)
                   </label>
                   <input
@@ -482,26 +482,26 @@ export const MeetingManager: React.FC = () => {
                     value={meetingLink}
                     onChange={(e) => setMeetingLink(e.target.value)}
                     placeholder="https://meet.google.com/xyz-abcd-efg (auto-generated if empty)"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                   <span className="text-[11px] text-slate-500 mt-1 block">
                     Leave empty to automatically generate a secure Google Meet link.
                   </span>
                 </div>
 
-                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-800">
+                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
                   <button
                     type="button"
                     disabled={scheduling}
                     onClick={() => setShowScheduleModal(false)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white"
+                    className="px-4 py-2 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={scheduling}
-                    className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow flex items-center gap-1.5"
+                    className="px-5 py-2 rounded-md text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm flex items-center gap-1.5"
                   >
                     {scheduling ? 'Scheduling...' : 'Schedule & Notify'}
                   </button>
@@ -513,24 +513,24 @@ export const MeetingManager: React.FC = () => {
 
         {/* Log Minutes Modal */}
         {selectedMeetingForMinutes && (
-          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="max-w-lg w-full rounded-3xl glass-panel border border-slate-700 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="max-w-lg w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative">
               <button
                 onClick={() => setSelectedMeetingForMinutes(null)}
                 disabled={submittingMinutes}
-                className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-2 mb-1">
-                <FileText className="w-5 h-5 text-emerald-400" />
-                <h2 className="text-xl font-bold text-white">Record Meeting Minutes</h2>
+                <FileText className="w-5 h-5 text-green-600" />
+                <h2 className="text-xl font-bold text-slate-900">Record Meeting Minutes</h2>
               </div>
-              <p className="text-xs text-slate-400 mb-2">
-                Meeting: <span className="text-white font-semibold">{selectedMeetingForMinutes.title}</span>
+              <p className="text-xs text-slate-500 mb-2">
+                Meeting: <span className="text-slate-900 font-semibold">{selectedMeetingForMinutes.title}</span>
               </p>
-              <p className="text-xs text-slate-400 mb-5">
+              <p className="text-xs text-slate-500 mb-5">
                 Recording minutes will mark the status as Completed and alert students.
               </p>
 
@@ -546,7 +546,7 @@ export const MeetingManager: React.FC = () => {
 
               <form onSubmit={handleMinutesSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Minutes & Action Items
                   </label>
                   <textarea
@@ -555,23 +555,23 @@ export const MeetingManager: React.FC = () => {
                     value={minutesText}
                     onChange={(e) => setMinutesText(e.target.value)}
                     placeholder="Enter discussion summaries, student progress evaluation, next deliverables, and deadlines..."
-                    className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2.5 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
-                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-800">
+                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
                   <button
                     type="button"
                     disabled={submittingMinutes}
                     onClick={() => setSelectedMeetingForMinutes(null)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white"
+                    className="px-4 py-2 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={submittingMinutes}
-                    className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-glow flex items-center gap-1.5"
+                    className="px-5 py-2 rounded-md text-xs font-medium text-white bg-green-600 hover:bg-green-700 shadow-sm flex items-center gap-1.5"
                   >
                     {submittingMinutes ? 'Saving Minutes...' : 'Save & Mark Completed'}
                   </button>

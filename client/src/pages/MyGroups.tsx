@@ -180,24 +180,24 @@ export const MyGroups: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               Project Group Formation
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Form multi-member student teams, invite peers, and lock rosters for project submissions.
             </p>
           </div>
 
           <button
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow transition-all self-start sm:self-auto"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-md text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all self-start sm:self-auto"
           >
             <Plus className="w-4 h-4" /> Create New Group
           </button>
@@ -215,33 +215,33 @@ export const MyGroups: React.FC = () => {
 
         {/* Incoming Invitations Notification Section */}
         {incomingInvites.length > 0 && (
-          <div className="mb-8 p-6 rounded-2xl bg-indigo-950/30 border border-indigo-500/30">
-            <h2 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-              <Mail className="w-4 h-4 text-indigo-400" /> Pending Team Invitations ({incomingInvites.length})
+          <div className="mb-8 p-6 rounded-xl bg-blue-50 border border-blue-200 shadow-sm">
+            <h2 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <Mail className="w-4 h-4 text-blue-600" /> Pending Team Invitations ({incomingInvites.length})
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {incomingInvites.map((invite) => (
                 <div
                   key={invite._id}
-                  className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between gap-4"
+                  className="p-4 rounded-md bg-white border border-slate-200 flex items-center justify-between gap-4 shadow-sm"
                 >
                   <div>
-                    <h3 className="font-bold text-white text-sm">{invite.name}</h3>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Invited by <span className="text-indigo-400 font-medium">{invite.leader?.name}</span> for{' '}
-                      <span className="text-slate-300 font-semibold">{invite.courseType}</span>
+                    <h3 className="font-bold text-slate-900 text-sm">{invite.name}</h3>
+                    <p className="text-xs text-slate-500 mt-0.5">
+                      Invited by <span className="text-blue-600 font-medium">{invite.leader?.name}</span> for{' '}
+                      <span className="text-slate-700 font-semibold">{invite.courseType}</span>
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleAcceptInvite(invite._id)}
-                      className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors"
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors shadow-sm"
                     >
                       <Check className="w-3.5 h-3.5" /> Accept
                     </button>
                     <button
                       onClick={() => handleDeclineInvite(invite._id)}
-                      className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-red-400 bg-slate-800 transition-colors"
+                      className="flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-red-600 hover:bg-red-50 bg-slate-100 transition-colors"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -253,26 +253,26 @@ export const MyGroups: React.FC = () => {
         )}
 
         {/* Active Groups Section */}
-        <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-          <Users className="w-5 h-5 text-indigo-400" /> My Active Teams
+        <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <Users className="w-5 h-5 text-blue-600" /> My Active Teams
         </h2>
 
         {loading ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {[1, 2].map((i) => (
-              <div key={i} className="h-64 rounded-2xl glass-panel border border-slate-800 animate-pulse" />
+              <div key={i} className="h-64 rounded-xl bg-white border border-slate-200 animate-pulse shadow-sm" />
             ))}
           </div>
         ) : groups.length === 0 ? (
-          <div className="p-12 text-center rounded-3xl glass-panel border border-slate-800">
-            <Users className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-white">No Groups Formed Yet</h3>
-            <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+          <div className="p-12 text-center rounded-xl bg-white border border-slate-200 shadow-sm">
+            <Users className="w-12 h-12 text-slate-400 mx-auto mb-3" />
+            <h3 className="text-base font-bold text-slate-900">No Groups Formed Yet</h3>
+            <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
               You are not part of any active student teams. Create a group or ask a peer to invite you using your roll number.
             </p>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="mt-5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow"
+              className="mt-5 px-4 py-2 rounded-md text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm"
             >
               Form Your Team
             </button>
@@ -287,22 +287,22 @@ export const MyGroups: React.FC = () => {
               return (
                 <div
                   key={group._id}
-                  className="rounded-3xl glass-panel border border-slate-800 p-6 flex flex-col justify-between shadow-xl"
+                  className="rounded-xl bg-white border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div>
                     {/* Group Card Header */}
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                      <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-blue-100 text-blue-800 border border-blue-200">
                         {group.courseType}
                       </span>
 
                       <span
-                        className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
+                        className={`text-xs font-semibold px-2.5 py-1 rounded-md border ${
                           group.status === 'assigned'
-                            ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                            ? 'bg-green-100 text-green-800 border-green-200'
                             : group.status === 'locked'
-                            ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
-                            : 'bg-blue-500/20 text-blue-300 border-blue-500/30'
+                            ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
+                            : 'bg-blue-100 text-blue-800 border-blue-200'
                         }`}
                       >
                         {group.status === 'assigned'
@@ -313,39 +313,39 @@ export const MyGroups: React.FC = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white mb-4">{group.name}</h3>
+                    <h3 className="text-xl font-bold text-slate-900 mb-4">{group.name}</h3>
 
                     {/* Members List */}
                     <div className="space-y-2 mb-6">
-                      <span className="text-xs font-semibold text-slate-400 block mb-1">
+                      <span className="text-xs font-semibold text-slate-500 block mb-1">
                         Team Roster ({group.members.length}/5 members):
                       </span>
                       <div className="space-y-1.5">
                         {group.members.map((member) => (
                           <div
                             key={member._id || member.id || member.email}
-                            className="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800 flex items-center justify-between text-xs"
+                            className="p-2.5 rounded-md bg-slate-50 border border-slate-200 flex items-center justify-between text-xs"
                           >
                             <div className="flex items-center gap-2.5">
                               {member.avatar ? (
                                 <img
                                   src={member.avatar}
                                   alt={member.name}
-                                  className="w-7 h-7 rounded-full border border-slate-700"
+                                  className="w-7 h-7 rounded-full border border-slate-200"
                                 />
                               ) : (
-                                <div className="w-7 h-7 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 font-bold">
+                                <div className="w-7 h-7 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-bold">
                                   {member.name?.charAt(0)}
                                 </div>
                               )}
                               <div>
                                 <div className="flex items-center gap-2">
-                                  <span className="font-semibold text-white">{member.name}</span>
+                                  <span className="font-semibold text-slate-900">{member.name}</span>
                                   {group.leader &&
                                     (typeof group.leader === 'object'
                                       ? ((group.leader as any)._id || (group.leader as any).id) === (member._id || member.id)
                                       : (group.leader as any) === (member._id || member.id)) && (
-                                      <span className="flex items-center gap-0.5 text-[10px] font-bold text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
+                                      <span className="flex items-center gap-0.5 text-[10px] font-bold text-yellow-700 bg-yellow-100 px-1.5 py-0.5 rounded border border-yellow-200">
                                         <Crown className="w-2.5 h-2.5" /> Leader
                                       </span>
                                     )}
@@ -355,7 +355,7 @@ export const MyGroups: React.FC = () => {
                                 </span>
                               </div>
                             </div>
-                            <span className="text-[11px] font-mono text-indigo-400">
+                            <span className="text-[11px] font-mono font-medium text-blue-600">
                               CGPA: {member.cgpa ? member.cgpa.toFixed(2) : 'N/A'}
                             </span>
                           </div>
@@ -365,8 +365,8 @@ export const MyGroups: React.FC = () => {
 
                     {/* Pending Outgoing Invites */}
                     {group.invites && group.invites.filter((i) => i.status === 'pending').length > 0 && (
-                      <div className="mb-4 p-3 rounded-xl bg-slate-900/40 border border-slate-800/80 text-xs">
-                        <span className="text-slate-500 font-semibold block mb-1">
+                      <div className="mb-4 p-3 rounded-md bg-slate-50 border border-slate-200 text-xs">
+                        <span className="text-slate-600 font-semibold block mb-1">
                           Pending Outgoing Invites:
                         </span>
                         <div className="flex flex-wrap gap-2">
@@ -375,7 +375,7 @@ export const MyGroups: React.FC = () => {
                             .map((inv, idx) => (
                               <span
                                 key={idx}
-                                className="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-[11px] border border-slate-700"
+                                className="px-2.5 py-1 rounded-md bg-white text-slate-600 text-[11px] border border-slate-200 shadow-sm"
                               >
                                 {inv.rollNumber || inv.email} (Pending)
                               </span>
@@ -387,19 +387,19 @@ export const MyGroups: React.FC = () => {
 
                   {/* Leader Action Controls */}
                   {isLeader && group.status !== 'assigned' && (
-                    <div className="pt-4 border-t border-slate-800 space-y-3">
+                    <div className="pt-4 border-t border-slate-100 space-y-3">
                       {group.status === 'forming' ? (
                         <>
                           {/* Invite Peer Toggle / Search */}
                           {invitingGroupId === group._id ? (
-                            <div className="p-3.5 rounded-xl bg-slate-900 border border-indigo-500/40 relative">
+                            <div className="p-3.5 rounded-md bg-white border border-blue-200 shadow-sm relative">
                               <div className="flex items-center justify-between mb-2">
-                                <span className="text-xs font-semibold text-indigo-300 flex items-center gap-1.5">
+                                <span className="text-xs font-semibold text-blue-700 flex items-center gap-1.5">
                                   <UserPlus className="w-3.5 h-3.5" /> Invite Peer to Team
                                 </span>
                                 <button
                                   onClick={() => setInvitingGroupId(null)}
-                                  className="text-slate-500 hover:text-white p-0.5"
+                                  className="text-slate-500 hover:text-slate-900 p-0.5"
                                 >
                                   <X className="w-4 h-4" />
                                 </button>
@@ -412,7 +412,7 @@ export const MyGroups: React.FC = () => {
                                   value={peerQuery}
                                   onChange={(e) => setPeerQuery(e.target.value)}
                                   placeholder="Search peer by name, roll no., or email..."
-                                  className="w-full pl-9 pr-3 py-2 text-xs rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                                  className="w-full pl-9 pr-3 py-2 text-xs rounded-md bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                                 />
                               </div>
 
@@ -426,18 +426,18 @@ export const MyGroups: React.FC = () => {
                                   {peerResults.map((peer) => (
                                     <div
                                       key={peer._id}
-                                      className="p-2 rounded-lg bg-slate-950/80 hover:bg-indigo-950/40 border border-slate-800 flex items-center justify-between text-xs transition-colors"
+                                      className="p-2 rounded-md bg-white hover:bg-blue-50 border border-slate-200 shadow-sm flex items-center justify-between text-xs transition-colors"
                                     >
                                       <div>
-                                        <span className="font-semibold text-white block">{peer.name}</span>
-                                        <span className="text-[10px] text-slate-400 font-mono">
+                                        <span className="font-semibold text-slate-900 block">{peer.name}</span>
+                                        <span className="text-[10px] text-slate-500 font-mono">
                                           {peer.rollNumber || peer.email}
                                         </span>
                                       </div>
                                       <button
                                         onClick={() => handleSendInvite(group._id, peer.email)}
                                         disabled={sendingInvite}
-                                        className="px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold"
+                                        className="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-medium shadow-sm"
                                       >
                                         Invite
                                       </button>
@@ -454,14 +454,14 @@ export const MyGroups: React.FC = () => {
                                   setPeerQuery('');
                                 }}
                                 disabled={group.members.length >= 5}
-                                className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-semibold text-indigo-300 bg-indigo-950/40 hover:bg-indigo-900/40 border border-indigo-500/30 transition-all disabled:opacity-50"
+                                className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-md text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 shadow-sm transition-all disabled:opacity-50"
                               >
                                 <UserPlus className="w-4 h-4" /> Invite Member
                               </button>
 
                               <button
                                 onClick={() => handleLockGroup(group._id)}
-                                className="flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow transition-all"
+                                className="flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-md text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all"
                               >
                                 <Lock className="w-4 h-4" /> Lock Roster
                               </button>
@@ -471,12 +471,12 @@ export const MyGroups: React.FC = () => {
                       ) : (
                         // Locked Group State: Show Unlock button with guardrail warning
                         <div className="flex items-center justify-between gap-3">
-                          <p className="text-[11px] text-slate-400 flex items-center gap-1.5">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Roster locked for applications.
+                          <p className="text-[11px] text-slate-500 flex items-center gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-green-600" /> Roster locked for applications.
                           </p>
                           <button
                             onClick={() => handleUnlockGroup(group._id)}
-                            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 transition-colors"
+                            className="flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-semibold text-yellow-700 bg-yellow-50 hover:bg-yellow-100 border border-yellow-200 shadow-sm transition-colors"
                             title="Unlock to add/remove members (requires 0 pending applications)"
                           >
                             <Unlock className="w-3.5 h-3.5" /> Unlock Roster
@@ -493,24 +493,24 @@ export const MyGroups: React.FC = () => {
 
         {/* Create Group Modal */}
         {showCreateModal && (
-          <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="max-w-md w-full rounded-3xl glass-panel border border-slate-700 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="max-w-md w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative">
               <button
                 onClick={() => setShowCreateModal(false)}
-                className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10"
+                className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <h2 className="text-xl font-bold text-white mb-2">Create New Project Team</h2>
-              <p className="text-xs text-slate-400 mb-6">
+              <h2 className="text-xl font-bold text-slate-900 mb-2">Create New Project Team</h2>
+              <p className="text-xs text-slate-500 mb-6">
                 You will be designated as the group leader and can invite peers via their roll numbers.
               </p>
 
               <form onSubmit={handleCreateGroup} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Team Name <span className="text-red-400">*</span>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    Team Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -518,18 +518,18 @@ export const MyGroups: React.FC = () => {
                     onChange={(e) => setGroupName(e.target.value)}
                     required
                     placeholder="e.g. Neural Dynamics Alpha"
-                    className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2.5 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                    Course Type <span className="text-red-400">*</span>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    Course Type <span className="text-red-500">*</span>
                   </label>
                   <select
                     value={courseType}
                     onChange={(e) => setCourseType(e.target.value as CourseType)}
-                    className="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2.5 text-xs rounded-md bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   >
                     <option value="Capstone Project">Capstone Project (Senior Year)</option>
                     <option value="Mini Project">Mini Project (Pre-Final Year)</option>
@@ -538,18 +538,18 @@ export const MyGroups: React.FC = () => {
                   </select>
                 </div>
 
-                <div className="pt-4 flex justify-end gap-3">
+                <div className="pt-4 flex justify-end gap-3 border-t border-slate-100 mt-6">
                   <button
                     type="button"
                     onClick={() => setShowCreateModal(false)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white"
+                    className="px-4 py-2 mt-2 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={creating}
-                    className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow disabled:opacity-50"
+                    className="px-5 py-2 mt-2 rounded-md text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm disabled:opacity-50"
                   >
                     {creating ? 'Creating Team...' : 'Create Team'}
                   </button>

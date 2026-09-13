@@ -218,7 +218,7 @@ export const AssessmentManager: React.FC = () => {
   const selectedProject = projects.find((p) => p._id === selectedProjectId);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -226,14 +226,14 @@ export const AssessmentManager: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 Assessment & Milestone Manager
               </h1>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
                 Faculty Portal
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Create project milestones, inspect student deliverables from Cloudinary, and evaluate
               code repositories.
             </p>
@@ -243,16 +243,16 @@ export const AssessmentManager: React.FC = () => {
             <button
               onClick={() => selectedProjectId && fetchProjectAssessments(selectedProjectId)}
               disabled={loading}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-md text-xs font-medium bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 transition-all shadow-sm"
             >
-              <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-indigo-400' : ''}`} />
+              <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-blue-600' : ''}`} />
               Refresh
             </button>
 
             <button
               onClick={() => setShowCreateModal(true)}
               disabled={!selectedProjectId}
-              className="flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow transition-all disabled:opacity-50"
+              className="flex items-center gap-2 px-5 py-2 rounded-md text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm transition-all disabled:opacity-50"
             >
               <Plus className="w-4 h-4" /> Publish Milestone
             </button>
@@ -270,20 +270,20 @@ export const AssessmentManager: React.FC = () => {
         )}
 
         {/* Project Selector Bar */}
-        <div className="mb-8 p-4 rounded-3xl glass-panel border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="mb-8 p-4 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-300">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[11px] font-semibold text-slate-400 block">
+              <span className="text-[11px] font-semibold text-slate-500 block">
                 Select Project to Manage:
               </span>
               {projects.length > 0 ? (
                 <select
                   value={selectedProjectId}
                   onChange={(e) => setSelectedProjectId(e.target.value)}
-                  className="bg-slate-900 border border-slate-700 text-white font-bold text-sm rounded-xl px-3 py-1.5 focus:outline-none focus:border-indigo-500 mt-0.5"
+                  className="bg-white border border-slate-200 text-slate-900 font-bold text-sm rounded-md px-3 py-1.5 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 mt-0.5"
                 >
                   {projects.map((p) => (
                     <option key={p._id} value={p._id}>
@@ -292,17 +292,17 @@ export const AssessmentManager: React.FC = () => {
                   ))}
                 </select>
               ) : (
-                <span className="text-xs text-slate-400">No projects found for your account.</span>
+                <span className="text-xs text-slate-500">No projects found for your account.</span>
               )}
             </div>
           </div>
 
           {selectedProject && (
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
+              <span className="text-[11px] font-mono font-medium px-3 py-1 rounded-md bg-slate-50 border border-slate-200 text-slate-700">
                 Capacity: {selectedProject.currentStudents} / {selectedProject.maxStudents}
               </span>
-              <span className="text-[11px] uppercase font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              <span className="text-[11px] uppercase font-bold px-3 py-1 rounded-md bg-green-100 text-green-800 border border-green-200">
                 {selectedProject.status}
               </span>
             </div>
@@ -312,16 +312,16 @@ export const AssessmentManager: React.FC = () => {
         {/* Assessments List */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : assessments.length === 0 ? (
-          <div className="p-12 rounded-3xl glass-panel border border-slate-800 text-center space-y-3 text-xs text-slate-500">
-            <Calendar className="w-8 h-8 mx-auto text-slate-600 mb-2" />
-            <h3 className="font-bold text-white text-base">No Milestones Published</h3>
+          <div className="p-12 rounded-xl bg-white border border-slate-200 text-center space-y-3 text-xs text-slate-500 shadow-sm">
+            <Calendar className="w-8 h-8 mx-auto text-slate-400 mb-2" />
+            <h3 className="font-bold text-slate-900 text-base">No Milestones Published</h3>
             <p>Publish an assessment milestone or deadline for your allocated student cohort.</p>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="mt-2 px-5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow inline-flex items-center gap-1.5"
+              className="mt-2 px-5 py-2 rounded-md text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-sm inline-flex items-center gap-1.5"
             >
               <Plus className="w-4 h-4" /> Create First Milestone
             </button>
@@ -335,40 +335,40 @@ export const AssessmentManager: React.FC = () => {
               return (
                 <div
                   key={assessment._id}
-                  className="rounded-3xl glass-panel border border-slate-800 overflow-hidden shadow-xl"
+                  className="rounded-xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                 >
                   {/* Milestone Card Header */}
-                  <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 bg-slate-900/40">
+                  <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 bg-slate-50/50">
                     <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center font-bold text-xs text-indigo-300 font-mono">
+                      <span className="w-8 h-8 rounded-md bg-blue-50 border border-blue-200 flex items-center justify-center font-bold text-xs text-blue-700 font-mono">
                         #{index + 1}
                       </span>
                       <div>
-                        <h3 className="text-base font-bold text-white">{assessment.title}</h3>
-                        <p className="text-xs text-slate-400 line-clamp-1 mt-0.5">
+                        <h3 className="text-base font-bold text-slate-900">{assessment.title}</h3>
+                        <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">
                           {assessment.description}
                         </p>
                       </div>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-4 text-xs">
-                      <div className="flex items-center gap-1.5 text-slate-300">
-                        <Calendar className="w-4 h-4 text-indigo-400" />
+                      <div className="flex items-center gap-1.5 text-slate-600">
+                        <Calendar className="w-4 h-4 text-blue-500" />
                         <span className="font-mono">
                           {new Date(assessment.deadline).toLocaleString()}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-1 text-slate-300 font-mono font-semibold">
-                        <Award className="w-4 h-4 text-indigo-400" />
+                      <div className="flex items-center gap-1 text-slate-600 font-mono font-semibold">
+                        <Award className="w-4 h-4 text-blue-500" />
                         {assessment.maxMarks} pts
                       </div>
 
                       <button
                         onClick={() => toggleExpandAssessment(assessment._id)}
-                        className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-colors text-xs font-semibold"
+                        className="flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 transition-colors text-xs font-medium shadow-sm"
                       >
-                        <FileCheck className="w-3.5 h-3.5 text-indigo-400" />
+                        <FileCheck className="w-3.5 h-3.5 text-blue-600" />
                         Submissions ({subList.length})
                         {isExpanded ? (
                           <ChevronUp className="w-4 h-4 ml-1" />
@@ -383,10 +383,10 @@ export const AssessmentManager: React.FC = () => {
                   {isExpanded && (
                     <div className="p-6 space-y-4 animate-in fade-in-50 duration-200">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
                           Student Deliverables for {assessment.title}
                         </h4>
-                        <span className="text-xs text-slate-500 font-mono">
+                        <span className="text-xs text-slate-600 font-mono font-medium">
                           Total Submitted: {subList.length}
                         </span>
                       </div>
@@ -396,14 +396,14 @@ export const AssessmentManager: React.FC = () => {
                           Loading submissions...
                         </div>
                       ) : subList.length === 0 ? (
-                        <div className="py-8 rounded-2xl bg-slate-900/40 border border-slate-800 text-center text-xs text-slate-500">
+                        <div className="py-8 rounded-md bg-slate-50 border border-slate-200 text-center text-xs text-slate-500">
                           No student submissions received for this milestone yet.
                         </div>
                       ) : (
                         <div className="overflow-x-auto">
-                          <table className="w-full text-left text-xs text-slate-300 border-collapse">
+                          <table className="w-full text-left text-xs text-slate-700 border-collapse">
                             <thead>
-                              <tr className="border-b border-slate-800 text-[11px] text-slate-400 uppercase font-semibold">
+                              <tr className="border-b border-slate-200 text-[11px] text-slate-500 uppercase font-semibold">
                                 <th className="pb-3 px-3">Submitter / Group</th>
                                 <th className="pb-3 px-3">Submitted At</th>
                                 <th className="pb-3 px-3">Status</th>
@@ -412,11 +412,11 @@ export const AssessmentManager: React.FC = () => {
                                 <th className="pb-3 px-3 text-right">Grading (Phase 5)</th>
                               </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-800/60">
+                            <tbody className="divide-y divide-slate-100">
                               {subList.map((sub) => (
-                                <tr key={sub._id} className="hover:bg-slate-900/40 transition-colors">
+                                <tr key={sub._id} className="hover:bg-slate-50 transition-colors">
                                   <td className="py-3.5 px-3">
-                                    <div className="font-semibold text-white">
+                                    <div className="font-semibold text-slate-900">
                                       {sub.group ? sub.group.name : sub.submittedBy?.name}
                                     </div>
                                     <span className="text-[11px] text-slate-500 font-mono">
@@ -424,21 +424,21 @@ export const AssessmentManager: React.FC = () => {
                                     </span>
                                   </td>
 
-                                  <td className="py-3.5 px-3 font-mono text-slate-400">
+                                  <td className="py-3.5 px-3 font-mono text-slate-600">
                                     {new Date(sub.createdAt).toLocaleString()}
                                   </td>
 
                                   <td className="py-3.5 px-3">
                                     {sub.status === 'late' ? (
-                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1 w-fit">
-                                        <Clock className="w-2.5 h-2.5 text-amber-400" /> Late
+                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 border border-yellow-200 flex items-center gap-1 w-fit">
+                                        <Clock className="w-2.5 h-2.5 text-yellow-600" /> Late
                                       </span>
                                     ) : sub.status === 'graded' ? (
-                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 w-fit">
-                                        <Award className="w-2.5 h-2.5 text-emerald-400" /> Graded
+                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-green-100 text-green-800 border border-green-200 flex items-center gap-1 w-fit">
+                                        <Award className="w-2.5 h-2.5 text-green-600" /> Graded
                                       </span>
                                     ) : (
-                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1 w-fit">
+                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 border border-blue-200 flex items-center gap-1 w-fit">
                                         On Time
                                       </span>
                                     )}
@@ -449,7 +449,7 @@ export const AssessmentManager: React.FC = () => {
                                       href={sub.fileUrl}
                                       target="_blank"
                                       rel="noreferrer"
-                                      className="inline-flex items-center gap-1 px-3 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-indigo-300 hover:text-white transition-colors"
+                                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-white border border-slate-200 hover:bg-slate-50 text-blue-600 hover:text-blue-700 transition-colors font-medium shadow-sm"
                                     >
                                       <Download className="w-3 h-3" /> Download File
                                     </a>
@@ -460,7 +460,7 @@ export const AssessmentManager: React.FC = () => {
                                       href={sub.githubUrl}
                                       target="_blank"
                                       rel="noreferrer"
-                                      className="inline-flex items-center gap-1 px-3 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-indigo-300 hover:text-white transition-colors font-mono text-[11px]"
+                                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-white border border-slate-200 hover:bg-slate-50 text-blue-600 hover:text-blue-700 transition-colors font-mono text-[11px] shadow-sm font-medium"
                                     >
                                       <ExternalLink className="w-3 h-3" /> View Code
                                     </a>
@@ -470,12 +470,12 @@ export const AssessmentManager: React.FC = () => {
                                     <div className="flex items-center justify-end gap-2">
                                       {sub.status === 'graded' ? (
                                         <>
-                                          <span className="font-bold text-xs text-emerald-400 font-mono">
+                                          <span className="font-bold text-xs text-green-600 font-mono">
                                             {sub.marks}/{assessment.maxMarks}
                                           </span>
                                           <button
                                             onClick={() => openGradingModal(sub, assessment)}
-                                            className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                                            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-[11px] font-medium rounded-md bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition-colors shadow-sm"
                                             title="Re-evaluate Submission"
                                           >
                                             Re-evaluate
@@ -484,7 +484,7 @@ export const AssessmentManager: React.FC = () => {
                                       ) : (
                                         <button
                                           onClick={() => openGradingModal(sub, assessment)}
-                                          className="inline-flex items-center gap-1 px-3 py-1 text-xs font-bold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white shadow-glow transition-colors"
+                                          className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-colors"
                                         >
                                           <Award className="w-3 h-3" /> Grade
                                         </button>
@@ -507,18 +507,18 @@ export const AssessmentManager: React.FC = () => {
 
         {/* Create Milestone Modal */}
         {showCreateModal && (
-          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="max-w-lg w-full rounded-3xl glass-panel border border-slate-700 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="max-w-lg w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative">
               <button
                 onClick={() => setShowCreateModal(false)}
                 disabled={creating}
-                className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <h2 className="text-xl font-bold text-white mb-1">Publish Project Milestone</h2>
-              <p className="text-xs text-slate-400 mb-6">
+              <h2 className="text-xl font-bold text-slate-900 mb-1">Publish Project Milestone</h2>
+              <p className="text-xs text-slate-500 mb-6">
                 Create a milestone deliverable with a strict deadline and maximum marks.
               </p>
 
@@ -530,7 +530,7 @@ export const AssessmentManager: React.FC = () => {
 
               <form onSubmit={handleCreateSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Milestone Title
                   </label>
                   <input
@@ -539,12 +539,12 @@ export const AssessmentManager: React.FC = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="e.g. Sprint 1 Report: Literature Review & Architecture"
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Description & Deliverable Guidelines
                   </label>
                   <textarea
@@ -553,13 +553,13 @@ export const AssessmentManager: React.FC = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Specify expectations, report formatting (PDF/DOCX), and GitHub repository structure..."
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Deadline (Date & Time)
                     </label>
                     <input
@@ -567,12 +567,12 @@ export const AssessmentManager: React.FC = () => {
                       required
                       value={deadline}
                       onChange={(e) => setDeadline(e.target.value)}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-indigo-500"
+                      className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Maximum Marks (pts)
                     </label>
                     <input
@@ -582,24 +582,24 @@ export const AssessmentManager: React.FC = () => {
                       max={1000}
                       value={maxMarks}
                       onChange={(e) => setMaxMarks(Number(e.target.value))}
-                      className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-indigo-500"
+                      className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                     />
                   </div>
                 </div>
 
-                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-800">
+                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
                   <button
                     type="button"
                     disabled={creating}
                     onClick={() => setShowCreateModal(false)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white"
+                    className="px-4 py-2 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={creating}
-                    className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow flex items-center gap-1.5"
+                    className="px-5 py-2 rounded-md text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm flex items-center gap-1.5"
                   >
                     {creating ? 'Publishing...' : 'Publish Assessment'}
                   </button>
@@ -610,33 +610,33 @@ export const AssessmentManager: React.FC = () => {
         )}
         {/* Grade Submission Modal */}
         {selectedSubForGrade && (
-          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="max-w-md w-full rounded-3xl glass-panel border border-slate-700 p-6 sm:p-8 shadow-2xl animate-in zoom-in-95 duration-200 relative">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="max-w-md w-full rounded-xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xl animate-in zoom-in-95 duration-200 relative">
               <button
                 onClick={() => setSelectedSubForGrade(null)}
                 disabled={grading}
-                className="absolute top-6 right-6 text-slate-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="absolute top-6 right-6 text-slate-500 hover:text-slate-900 p-1 rounded-md hover:bg-slate-100 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-2 mb-1">
-                <Award className="w-5 h-5 text-indigo-400" />
-                <h2 className="text-xl font-bold text-white">
+                <Award className="w-5 h-5 text-blue-600" />
+                <h2 className="text-xl font-bold text-slate-900">
                   {selectedSubForGrade.sub.status === 'graded' ? 'Re-evaluate Submission' : 'Grade Submission'}
                 </h2>
               </div>
-              <p className="text-xs text-slate-400 mb-2">
+              <p className="text-xs text-slate-500 mb-2">
                 {selectedSubForGrade.sub.group
                   ? `Group: ${selectedSubForGrade.sub.group.name}`
                   : `Student: ${selectedSubForGrade.sub.submittedBy?.name}`}
               </p>
-              <div className="p-3 mb-5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
-                <div className="text-slate-400">
-                  Milestone: <span className="text-white font-semibold">{selectedSubForGrade.assessment.title}</span>
+              <div className="p-3 mb-5 rounded-md bg-slate-50 border border-slate-200 text-xs">
+                <div className="text-slate-600">
+                  Milestone: <span className="text-slate-900 font-semibold">{selectedSubForGrade.assessment.title}</span>
                 </div>
-                <div className="text-slate-400 mt-0.5">
-                  Maximum Marks: <span className="text-indigo-400 font-bold">{selectedSubForGrade.assessment.maxMarks} pts</span>
+                <div className="text-slate-600 mt-0.5">
+                  Maximum Marks: <span className="text-blue-600 font-bold">{selectedSubForGrade.assessment.maxMarks} pts</span>
                 </div>
               </div>
 
@@ -648,7 +648,7 @@ export const AssessmentManager: React.FC = () => {
 
               <form onSubmit={handleGradeSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Marks Awarded (0 - {selectedSubForGrade.assessment.maxMarks})
                   </label>
                   <input
@@ -659,12 +659,12 @@ export const AssessmentManager: React.FC = () => {
                     value={gradeMarks}
                     onChange={(e) => setGradeMarks(e.target.value === '' ? '' : Number(e.target.value))}
                     placeholder={`Enter marks between 0 and ${selectedSubForGrade.assessment.maxMarks}`}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 font-mono"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                     Feedback & Evaluation Notes
                   </label>
                   <textarea
@@ -672,23 +672,23 @@ export const AssessmentManager: React.FC = () => {
                     value={gradeFeedback}
                     onChange={(e) => setGradeFeedback(e.target.value)}
                     placeholder="Constructive feedback, rubric notes, or areas for improvement..."
-                    className="w-full px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3.5 py-2 text-xs rounded-md bg-white border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
-                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-800">
+                <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
                   <button
                     type="button"
                     disabled={grading}
                     onClick={() => setSelectedSubForGrade(null)}
-                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white"
+                    className="px-4 py-2 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={grading}
-                    className="px-5 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow flex items-center gap-1.5"
+                    className="px-5 py-2 rounded-md text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-sm flex items-center gap-1.5"
                   >
                     {grading
                       ? 'Saving Grade...'

@@ -32,12 +32,12 @@ export const App: React.FC = () => {
         toastOptions={{
           duration: 5000,
           style: {
-            background: '#0f172a',
-            color: '#f8fafc',
-            border: '1px solid #334155',
+            background: '#ffffff',
+            color: '#0f172a',
+            border: '1px solid #e2e8f0',
             fontSize: '13px',
-            borderRadius: '16px',
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5)',
+            borderRadius: '6px',
+            boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
           },
         }}
       />

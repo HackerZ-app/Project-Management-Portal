@@ -31,8 +31,8 @@ import { AnalyticsDashboardResponse } from '../types/analytics.types';
 import { Project } from '../types/project.types';
 import { Alert } from '../components/Alert';
 
-const PIE_COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444'];
-const BAR_COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#3b82f6', '#14b8a6'];
+const PIE_COLORS = ['#2563eb', '#16a34a', '#d97706', '#dc2626'];
+const BAR_COLORS = ['#2563eb', '#7c3aed', '#db2777', '#2563eb', '#0d9488'];
 
 export const AnalyticsDashboard: React.FC = () => {
   const [data, setData] = useState<AnalyticsDashboardResponse | null>(null);
@@ -110,23 +110,23 @@ export const AnalyticsDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Bar */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-slate-800">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-slate-200">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <BarChart3 className="w-5 h-5 text-indigo-400" />
-              <span className="text-xs uppercase font-bold tracking-widest text-indigo-400">
+              <BarChart3 className="w-5 h-5 text-blue-600" />
+              <span className="text-xs uppercase font-bold tracking-widest text-blue-600">
                 Module 16 • Executive Intelligence
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Academic Analytics & Grade Release
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Aggregated domain distributions, student milestone performance, and official CSV grade exports.
             </p>
           </div>
@@ -135,17 +135,17 @@ export const AnalyticsDashboard: React.FC = () => {
             <button
               onClick={fetchDashboard}
               disabled={loading}
-              className="p-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+              className="p-2.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-colors shadow-sm"
               title="Refresh Analytics"
             >
-              <RotateCw className={`w-4 h-4 ${loading ? 'animate-spin text-indigo-400' : ''}`} />
+              <RotateCw className={`w-4 h-4 ${loading ? 'animate-spin text-blue-600' : ''}`} />
             </button>
 
             <button
               id="export-csv-btn"
               onClick={handleExportCSV}
               disabled={exporting}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-glow transition-all"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs shadow-sm transition-all"
             >
               <Download className={`w-4 h-4 ${exporting ? 'animate-bounce' : ''}`} />
               {exporting ? 'Generating CSV...' : 'Export to Excel / CSV'}
@@ -166,7 +166,7 @@ export const AnalyticsDashboard: React.FC = () => {
 
         {loading ? (
           <div className="flex items-center justify-center py-24">
-            <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : !data ? (
           <div className="mt-12 text-center text-slate-500 text-sm">
@@ -176,12 +176,12 @@ export const AnalyticsDashboard: React.FC = () => {
           <div className="space-y-8 mt-6">
             {/* KPI Cards Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="p-5 rounded-3xl glass-panel border border-slate-800 space-y-1">
-                <div className="flex items-center justify-between text-slate-400">
+              <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-1">
+                <div className="flex items-center justify-between text-slate-500">
                   <span className="text-xs font-semibold">Total Projects</span>
-                  <FolderGit2 className="w-4 h-4 text-indigo-400" />
+                  <FolderGit2 className="w-4 h-4 text-blue-500" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">
+                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">
                   {data.kpis.totalProjects}
                 </div>
                 <div className="text-[11px] text-slate-500">
@@ -189,12 +189,12 @@ export const AnalyticsDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-5 rounded-3xl glass-panel border border-slate-800 space-y-1">
-                <div className="flex items-center justify-between text-slate-400">
+              <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-1">
+                <div className="flex items-center justify-between text-slate-500">
                   <span className="text-xs font-semibold">Submissions Evaluated</span>
-                  <Award className="w-4 h-4 text-emerald-400" />
+                  <Award className="w-4 h-4 text-green-500" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">
+                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">
                   {data.kpis.totalGraded}
                 </div>
                 <div className="text-[11px] text-slate-500">
@@ -202,12 +202,12 @@ export const AnalyticsDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-5 rounded-3xl glass-panel border border-slate-800 space-y-1">
-                <div className="flex items-center justify-between text-slate-400">
+              <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-1">
+                <div className="flex items-center justify-between text-slate-500">
                   <span className="text-xs font-semibold">Enrolled Students</span>
-                  <GraduationCap className="w-4 h-4 text-blue-400" />
+                  <GraduationCap className="w-4 h-4 text-blue-500" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">
+                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">
                   {data.kpis.totalStudents}
                 </div>
                 <div className="text-[11px] text-slate-500">
@@ -215,12 +215,12 @@ export const AnalyticsDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-5 rounded-3xl glass-panel border border-slate-800 space-y-1">
-                <div className="flex items-center justify-between text-slate-400">
+              <div className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-1">
+                <div className="flex items-center justify-between text-slate-500">
                   <span className="text-xs font-semibold">Faculty Mentors</span>
-                  <Users className="w-4 h-4 text-purple-400" />
+                  <Users className="w-4 h-4 text-purple-500" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">
+                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">
                   {data.kpis.totalFaculty}
                 </div>
                 <div className="text-[11px] text-slate-500">
@@ -232,10 +232,10 @@ export const AnalyticsDashboard: React.FC = () => {
             {/* Visual Charts Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Chart 1: Project Distribution by Domain */}
-              <div className="p-6 rounded-3xl glass-panel border border-slate-800 space-y-4">
+              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-white text-sm flex items-center gap-2">
-                    <FolderGit2 className="w-4 h-4 text-indigo-400" /> Projects by Research Domain
+                  <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                    <FolderGit2 className="w-4 h-4 text-blue-600" /> Projects by Research Domain
                   </h3>
                   <span className="text-xs text-slate-500 font-mono">
                     {data.projectsByDomain.length} domains
@@ -248,26 +248,27 @@ export const AnalyticsDashboard: React.FC = () => {
                       data={data.projectsByDomain}
                       margin={{ top: 10, right: 10, left: -20, bottom: 20 }}
                     >
-                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" opacity={0.4} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.8} />
                       <XAxis
                         dataKey="domain"
-                        stroke="#94a3b8"
+                        stroke="#64748b"
                         fontSize={11}
                         interval={0}
                         angle={-15}
                         textAnchor="end"
                       />
-                      <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
+                      <YAxis stroke="#64748b" fontSize={11} allowDecimals={false} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: '#0f172a',
-                          borderColor: '#334155',
-                          borderRadius: '12px',
-                          color: '#fff',
+                          backgroundColor: '#ffffff',
+                          borderColor: '#e2e8f0',
+                          borderRadius: '8px',
+                          color: '#0f172a',
                           fontSize: '12px',
+                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                         }}
                       />
-                      <Bar dataKey="count" fill="#6366f1" radius={[8, 8, 0, 0]}>
+                      <Bar dataKey="count" fill="#2563eb" radius={[4, 4, 0, 0]}>
                         {data.projectsByDomain.map((_entry, index) => (
                           <Cell
                             key={`cell-${index}`}
@@ -281,10 +282,10 @@ export const AnalyticsDashboard: React.FC = () => {
               </div>
 
               {/* Chart 2: Average Marks by Course Type */}
-              <div className="p-6 rounded-3xl glass-panel border border-slate-800 space-y-4">
+              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm space-y-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-white text-sm flex items-center gap-2">
-                    <Award className="w-4 h-4 text-emerald-400" /> Average Marks per Course Type
+                  <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                    <Award className="w-4 h-4 text-green-600" /> Average Marks per Course Type
                   </h3>
                   <span className="text-xs text-slate-500 font-mono">Evaluation Metrics</span>
                 </div>
@@ -300,30 +301,31 @@ export const AnalyticsDashboard: React.FC = () => {
                         data={data.avgMarksByCourseType}
                         margin={{ top: 10, right: 10, left: -20, bottom: 20 }}
                       >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" opacity={0.4} />
+                        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" opacity={0.8} />
                         <XAxis
                           dataKey="courseType"
-                          stroke="#94a3b8"
+                          stroke="#64748b"
                           fontSize={11}
                           interval={0}
                           angle={-15}
                           textAnchor="end"
                         />
-                        <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 100]} />
+                        <YAxis stroke="#64748b" fontSize={11} domain={[0, 100]} />
                         <Tooltip
                           contentStyle={{
-                            backgroundColor: '#0f172a',
-                            borderColor: '#334155',
-                            borderRadius: '12px',
-                            color: '#fff',
+                            backgroundColor: '#ffffff',
+                            borderColor: '#e2e8f0',
+                            borderRadius: '8px',
+                            color: '#0f172a',
                             fontSize: '12px',
+                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                           }}
                         />
                         <Bar
                           dataKey="avgMarks"
                           name="Avg Marks Awarded"
-                          fill="#10b981"
-                          radius={[8, 8, 0, 0]}
+                          fill="#16a34a"
+                          radius={[4, 4, 0, 0]}
                         />
                       </BarChart>
                     </ResponsiveContainer>
@@ -335,9 +337,9 @@ export const AnalyticsDashboard: React.FC = () => {
             {/* Row 2: Status Breakdown Pie Chart & Coordinator Grade Release Console */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Pie Chart: Project Status */}
-              <div className="p-6 rounded-3xl glass-panel border border-slate-800 space-y-4">
-                <h3 className="font-bold text-white text-sm flex items-center gap-2">
-                  <PieChartIcon className="w-4 h-4 text-indigo-400" /> Lifecycle Status Breakdown
+              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm space-y-4">
+                <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                  <PieChartIcon className="w-4 h-4 text-blue-600" /> Lifecycle Status Breakdown
                 </h3>
 
                 <div className="h-60 w-full flex items-center justify-center">
@@ -361,17 +363,18 @@ export const AnalyticsDashboard: React.FC = () => {
                       </Pie>
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: '#0f172a',
-                          borderColor: '#334155',
-                          borderRadius: '12px',
-                          color: '#fff',
+                          backgroundColor: '#ffffff',
+                          borderColor: '#e2e8f0',
+                          borderRadius: '8px',
+                          color: '#0f172a',
                           fontSize: '12px',
+                          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                         }}
                       />
                       <Legend
                         verticalAlign="bottom"
                         height={36}
-                        wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }}
+                        wrapperStyle={{ fontSize: '11px', color: '#64748b' }}
                       />
                     </PieChart>
                   </ResponsiveContainer>
@@ -379,17 +382,17 @@ export const AnalyticsDashboard: React.FC = () => {
               </div>
 
               {/* Coordinator Final Grade Release Console */}
-              <div className="lg:col-span-2 p-6 rounded-3xl glass-panel border border-slate-800 space-y-4 flex flex-col justify-between">
+              <div className="lg:col-span-2 p-6 rounded-xl bg-white border border-slate-200 shadow-sm space-y-4 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-white text-sm flex items-center gap-2">
-                      <Lock className="w-4 h-4 text-amber-400" /> Coordinator Grade Release Desk
+                    <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                      <Lock className="w-4 h-4 text-yellow-600" /> Coordinator Grade Release Desk
                     </h3>
-                    <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 border border-yellow-200">
                       Module 16
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 mb-4">
+                  <p className="text-xs text-slate-500 mb-4">
                     Release final grades and officially close projects. Triggers real-time student notifications and applies the missing deliverable deadlock auto-zero safeguard.
                   </p>
 
@@ -397,36 +400,36 @@ export const AnalyticsDashboard: React.FC = () => {
                     {projects.map((proj) => (
                       <div
                         key={proj._id}
-                        className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                        className="p-3.5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs transition-colors"
                       >
                         <div className="space-y-0.5">
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-white">{proj.title}</span>
+                            <span className="font-bold text-slate-900">{proj.title}</span>
                             <span
-                              className={`text-[9px] uppercase font-bold px-2 py-0.5 rounded-full border ${
+                              className={`text-[9px] uppercase font-bold px-2 py-0.5 rounded-md border ${
                                 proj.status === 'closed'
-                                  ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
-                                  : 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30'
+                                  ? 'bg-green-100 text-green-800 border-green-200'
+                                  : 'bg-blue-50 text-blue-700 border-blue-200'
                               }`}
                             >
                               {proj.status}
                             </span>
                           </div>
-                          <span className="text-slate-400 text-[11px] block">
+                          <span className="text-slate-500 text-[11px] block">
                             {proj.courseType} • Domain: {proj.domain}
                           </span>
                         </div>
 
                         <div>
                           {proj.status === 'closed' ? (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-green-700 bg-green-50 px-3 py-1.5 rounded-md border border-green-200">
                               <CheckCircle2 className="w-3.5 h-3.5" /> Grades Released
                             </span>
                           ) : (
                             <button
                               onClick={() => handleReleaseGrades(proj._id, proj.title)}
                               disabled={releasingId === proj._id}
-                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-glow transition-all disabled:opacity-50"
+                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs transition-all disabled:opacity-50"
                             >
                               <Lock className="w-3 h-3" />
                               {releasingId === proj._id ? 'Releasing...' : 'Release Grades'}
