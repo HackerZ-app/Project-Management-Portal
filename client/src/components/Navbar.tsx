@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  GraduationCap,
   LogOut,
   User as UserIcon,
   Bell,

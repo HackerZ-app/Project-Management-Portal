@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Lightbulb, Shield, Users, BookOpen, Clock } from 'lucide-react';
+import { Check, Lightbulb, Shield, Users, BookOpen } from 'lucide-react';
 
 const LOGO_URL = 'https://upload.wikimedia.org/wikipedia/en/f/f5/SRM_University%2C_Andhra_Pradesh_logo.png';
 

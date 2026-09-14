@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useAuthStore } from './store/useAuthStore';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
