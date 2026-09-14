@@ -17,6 +17,8 @@ import { Notification } from '../types/notification.types';
 import useNotificationStore from '../store/useNotificationStore';
 import useSocket from '../hooks/useSocket';
 
+const LOGO_URL = 'https://upload.wikimedia.org/wikipedia/en/f/f5/SRM_University%2C_Andhra_Pradesh_logo.png';
+
 export const Navbar: React.FC = () => {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
@@ -104,8 +106,8 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Brand / Logo */}
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-md bg-blue-600 flex items-center justify-center">
-              <GraduationCap className="h-6 w-6 text-white" />
+            <div className="h-10 w-10 rounded-full border-2 border-slate-100 flex items-center justify-center overflow-hidden bg-white shrink-0">
+              <img src={LOGO_URL} alt="SRM AP Logo" className="w-full h-full object-cover p-0.5" />
             </div>
             <div>
               <div className="flex items-center gap-2">

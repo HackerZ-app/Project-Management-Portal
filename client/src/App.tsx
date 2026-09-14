@@ -17,6 +17,8 @@ import { NotFound } from './pages/NotFound';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Toaster } from 'react-hot-toast';
 
+import { Landing } from './pages/Landing';
+
 export const App: React.FC = () => {
   const { initializeAuth } = useAuthStore();
 
@@ -42,6 +44,9 @@ export const App: React.FC = () => {
         }}
       />
       <Routes>
+        {/* Public Landing */}
+        <Route path="/" element={<Landing />} />
+
         {/* Public Login */}
         <Route path="/login" element={<Login />} />
 
@@ -144,9 +149,6 @@ export const App: React.FC = () => {
             </ProtectedRoute>
           }
         />
-
-        {/* Root Redirect */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
         {/* Access Denied & 404 */}
         <Route path="/unauthorized" element={<Unauthorized />} />

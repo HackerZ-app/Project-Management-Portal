@@ -24,6 +24,13 @@ export default {
           800: '#0f172a',
           900: '#0b0f19',
           950: '#05070d',
+        },
+        coreshift: {
+          orange: '#FF5C35',
+          purple: '#9B51E0',
+          blue: '#2D9CDB',
+          yellow: '#F2C94C',
+          red: '#EB5757',
         }
       },
       fontFamily: {
@@ -31,6 +38,8 @@ export default {
       },
       boxShadow: {
         'glow': '0 0 25px -5px rgba(99, 102, 241, 0.4)',
+        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+        'float': '0 20px 40px -10px rgba(0,0,0,0.1)',
       }
     },
   },
