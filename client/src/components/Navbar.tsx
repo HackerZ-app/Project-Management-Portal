@@ -16,7 +16,7 @@ import { Notification } from '../types/notification.types';
 import useNotificationStore from '../store/useNotificationStore';
 import useSocket from '../hooks/useSocket';
 
-const LOGO_URL = 'https://upload.wikimedia.org/wikipedia/en/f/f5/SRM_University%2C_Andhra_Pradesh_logo.png';
+const LOGO_URL = '/logo.png';
 
 export const Navbar: React.FC = () => {
   const { user, logout } = useAuthStore();
@@ -77,14 +77,14 @@ export const Navbar: React.FC = () => {
   const getRoleBadge = (role?: UserRole) => {
     switch (role) {
       case 'admin':
-        return 'bg-purple-100 text-purple-800 border-purple-200';
+        return 'bg-purple-50 text-purple-800';
       case 'coordinator':
-        return 'bg-amber-100 text-amber-800 border-amber-200';
+        return 'bg-amber-50 text-amber-800';
       case 'faculty':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-blue-50 text-blue-700';
       case 'student':
       default:
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-slate-100 text-slate-700';
     }
   };
 
@@ -106,12 +106,12 @@ export const Navbar: React.FC = () => {
           {/* Brand / Logo */}
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-full border-2 border-slate-100 flex items-center justify-center overflow-hidden bg-white shrink-0">
-              <img src={LOGO_URL} alt="SRM AP Logo" className="w-full h-full object-cover p-0.5" />
+              <img src={LOGO_URL} alt="SRM AP Logo" className="w-full h-full object-contain p-0.5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-lg text-slate-900 tracking-tight">SRM AP</span>
-                <span className="text-xs uppercase font-semibold tracking-wider px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                <span className="text-[10px] uppercase font-semibold tracking-wider px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-700">
                   Portal
                 </span>
               </div>
@@ -121,79 +121,46 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
 
-          {/* Main Navigation Links */}
+          {/* Main Navigation Links — Role-Based Dynamic Config */}
           {user && (
             <nav className="hidden md:flex items-center gap-1 p-1 text-xs">
-              <button
-                onClick={() => navigate('/dashboard')}
-                className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-              >
-                Dashboard
-              </button>
-              <button
-                onClick={() => navigate('/projects')}
-                className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-              >
-                Projects
-              </button>
-              {user.role === 'student' && (
-                <>
-                  <button
-                    onClick={() => navigate('/groups')}
-                    className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                  >
-                    My Groups
-                  </button>
-                  <button
-                    onClick={() => navigate('/workspace')}
-                    className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                  >
-                    Workspace
-                  </button>
-                </>
-              )}
-              {(user.role === 'faculty' || user.role === 'coordinator' || user.role === 'admin') && (
-                <>
-                  <button
-                    onClick={() => navigate('/applications')}
-                    className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                  >
-                    Applications
-                  </button>
-                  <button
-                    onClick={() => navigate('/assessments')}
-                    className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                  >
-                    Assessments
-                  </button>
-                  <button
-                    onClick={() => navigate('/meetings')}
-                    className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                  >
-                    Meetings
-                  </button>
-                  {(user.role === 'coordinator' || user.role === 'admin') && (
-                    <button
-                      onClick={() => navigate('/analytics')}
-                      className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                    >
-                      Analytics
-                    </button>
-                  )}
-                  <button
-                    onClick={() => navigate('/projects/create')}
-                    className="px-3.5 py-1.5 rounded-md font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors ml-2"
-                  >
-                    + Propose Project
-                  </button>
-                </>
-              )}
-              <button
-                onClick={() => navigate('/profile')}
-                className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-              >
-                Profile
-              </button>
+              {((): { label: string; href: string }[] => {
+                const NAV_CONFIG: Record<string, { label: string; href: string }[]> = {
+                  student: [
+                    { label: 'Dashboard', href: '/dashboard' },
+                    { label: 'Projects', href: '/projects' },
+                    { label: 'My Groups', href: '/groups' },
+                    { label: 'Workspace', href: '/workspace' },
+                  ],
+                  faculty: [
+                    { label: 'Dashboard', href: '/dashboard' },
+                    { label: 'Mentorships', href: '/applications' },
+                    { label: 'Evaluations', href: '/assessments' },
+                    { label: 'Meetings', href: '/meetings' },
+                  ],
+                  coordinator: [
+                    { label: 'Dashboard', href: '/dashboard' },
+                    { label: 'Master Registry', href: '/projects' },
+                    { label: 'Analytics', href: '/analytics' },
+                    { label: 'Settings', href: '/profile' },
+                  ],
+                  admin: [
+                    { label: 'Dashboard', href: '/dashboard' },
+                    { label: 'User Directory', href: '/projects' },
+                    { label: 'System Health', href: '/analytics' },
+                    { label: 'Security', href: '/profile' },
+                  ],
+                };
+                return NAV_CONFIG[user.role] || NAV_CONFIG.student;
+              })().map((item) => (
+                <button
+                  key={item.href + item.label}
+                  onClick={() => navigate(item.href)}
+                  className="px-3.5 py-1.5 rounded-md font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+                >
+                  {item.label}
+                </button>
+              ))}
             </nav>
           )}
 
@@ -227,7 +194,7 @@ export const Navbar: React.FC = () => {
                         <Bell className="w-4 h-4 text-slate-600" />
                         <span className="font-semibold text-sm text-slate-900">Notifications</span>
                         {unreadCount > 0 && (
-                          <span className="text-[11px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 font-medium border border-blue-200">
+                          <span className="text-[11px] px-2 py-0.5 rounded-full bg-slate-200 text-slate-800 font-medium">
                             {unreadCount} new
                           </span>
                         )}
@@ -309,7 +276,7 @@ export const Navbar: React.FC = () => {
                       {user.name}
                     </span>
                     <span
-                      className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md border ${getRoleBadge(
+                      className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md ${getRoleBadge(
                         user.role
                       )}`}
                     >

@@ -9,6 +9,45 @@
   }
 }
 
+@layer components {
+  /* Enterprise Design System: Tags & Status Badges */
+  .badge-status {
+    @apply inline-flex items-center gap-1.5 rounded-full font-semibold px-2.5 py-0.5 text-[11px] tracking-tight select-none;
+  }
+  .badge-status-success {
+    @apply badge-status bg-emerald-50 text-emerald-700;
+  }
+  .badge-status-warning {
+    @apply badge-status bg-amber-50 text-amber-800;
+  }
+  .badge-status-danger {
+    @apply badge-status bg-rose-50 text-rose-700;
+  }
+  .badge-status-neutral {
+    @apply badge-status bg-slate-100 text-slate-700;
+  }
+  .badge-status-info {
+    @apply badge-status bg-blue-50 text-blue-700;
+  }
+
+  .tag-category, .tag-tech {
+    @apply inline-flex items-center gap-1 rounded-md font-medium bg-slate-100 text-slate-700 px-2 py-0.5 text-[11px] tracking-tight select-none;
+  }
+
+  .badge-role-student {
+    @apply inline-flex items-center rounded-md font-semibold capitalize px-2 py-0.5 text-[11px] bg-slate-100 text-slate-700;
+  }
+  .badge-role-faculty {
+    @apply inline-flex items-center rounded-md font-semibold capitalize px-2 py-0.5 text-[11px] bg-blue-50 text-blue-700;
+  }
+  .badge-role-coordinator {
+    @apply inline-flex items-center rounded-md font-semibold capitalize px-2 py-0.5 text-[11px] bg-amber-50 text-amber-800;
+  }
+  .badge-role-admin {
+    @apply inline-flex items-center rounded-md font-semibold capitalize px-2 py-0.5 text-[11px] bg-purple-50 text-purple-800;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

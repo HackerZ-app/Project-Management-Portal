@@ -301,7 +301,7 @@ export const MyGroups: React.FC = () => {
               <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 Project Group Formation
               </h1>
-              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
                 AY 2026-27 Roster
               </span>
             </div>
@@ -381,8 +381,8 @@ export const MyGroups: React.FC = () => {
             </h2>
 
             {groups.length === 0 && (
-              <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200 flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3 text-amber-600" /> Populated Production Team View
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3 text-slate-500" /> Populated Production Team View
               </span>
             )}
           </div>
@@ -416,7 +416,7 @@ export const MyGroups: React.FC = () => {
                       <div>
                         <div className="flex items-center gap-2.5">
                           <h3 className="text-base font-bold text-slate-900 tracking-tight">{group.name}</h3>
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                          <span className="text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
                             {group.courseType}
                           </span>
                         </div>
@@ -435,12 +435,12 @@ export const MyGroups: React.FC = () => {
                     <div className="flex items-center gap-2.5 self-start sm:self-auto">
                       {/* Prominent Status Badge */}
                       <span
-                        className={`text-xs font-bold px-3 py-1 rounded-md border flex items-center gap-1.5 shadow-2xs ${
+                        className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5 ${
                           group.status === 'assigned'
-                            ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                            ? 'bg-emerald-50 text-emerald-700'
                             : group.status === 'locked'
-                            ? 'bg-amber-100 text-amber-800 border-amber-200'
-                            : 'bg-blue-100 text-blue-800 border-blue-200'
+                            ? 'bg-amber-50 text-amber-800'
+                            : 'bg-blue-50 text-blue-700'
                         }`}
                       >
                         {group.status === 'locked' && <Lock className="w-3.5 h-3.5 text-amber-600" />}
@@ -520,11 +520,11 @@ export const MyGroups: React.FC = () => {
                                         {member.name}
                                       </span>
                                       {isMemLeader ? (
-                                        <span className="flex items-center gap-0.5 text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-200">
+                                        <span className="flex items-center gap-0.5 text-[10px] font-semibold text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded-md">
                                           <Crown className="w-2.5 h-2.5 text-amber-700" /> Leader
                                         </span>
                                       ) : (
-                                        <span className="text-[10px] font-semibold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">
+                                        <span className="text-[10px] font-medium text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded-md">
                                           Member
                                         </span>
                                       )}
@@ -537,7 +537,7 @@ export const MyGroups: React.FC = () => {
                               </td>
 
                               <td className="py-3.5 px-6 whitespace-nowrap">
-                                <span className="font-mono text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 text-[11px]">
+                                <span className="font-mono text-slate-700 bg-slate-100 px-2 py-0.5 rounded-md text-[11px]">
                                   {member.rollNumber || 'AP21110010042'}
                                 </span>
                               </td>
@@ -555,7 +555,7 @@ export const MyGroups: React.FC = () => {
                               </td>
 
                               <td className="py-3.5 px-6 whitespace-nowrap text-right">
-                                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
                                   <ShieldCheck className="w-3 h-3 text-emerald-600" /> Enrolled
                                 </span>
                               </td>
@@ -578,7 +578,7 @@ export const MyGroups: React.FC = () => {
                             .map((inv, idx) => (
                               <span
                                 key={idx}
-                                className="font-mono text-[11px] px-2 py-0.5 rounded bg-white text-slate-700 border border-slate-200 shadow-2xs"
+                                className="font-mono text-[11px] px-2 py-0.5 rounded-md bg-slate-100 text-slate-700"
                               >
                                 {inv.rollNumber || inv.email} (Pending)
                               </span>
@@ -632,7 +632,7 @@ export const MyGroups: React.FC = () => {
                                       {peer.rollNumber || peer.email} &bull; {peer.department || 'CSE'}
                                     </span>
                                   </div>
-                                  <span className="text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded border border-blue-200">
+                                  <span className="text-[11px] font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">
                                     Select & Send
                                   </span>
                                 </div>

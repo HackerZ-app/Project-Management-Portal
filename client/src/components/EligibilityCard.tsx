@@ -86,10 +86,10 @@ export const EligibilityCard: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-3">
           <div
-            className={`p-2.5 rounded-xl border ${
+            className={`p-2.5 rounded-xl ${
               data.isEligible
-                ? 'bg-green-50 border-green-200 text-green-600'
-                : 'bg-yellow-50 border-yellow-200 text-yellow-600'
+                ? 'bg-emerald-50 text-emerald-600'
+                : 'bg-amber-50 text-amber-700'
             }`}
           >
             {data.isEligible ? <ShieldCheck className="w-6 h-6" /> : <ShieldAlert className="w-6 h-6" />}
@@ -98,10 +98,10 @@ export const EligibilityCard: React.FC = () => {
             <div className="flex items-center gap-2">
               <h2 className="text-base font-bold text-slate-900">Project Eligibility Standing</h2>
               <span
-                className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md border ${
+                className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full ${
                   data.isEligible
-                    ? 'bg-green-100 text-green-800 border-green-200'
-                    : 'bg-yellow-100 text-yellow-800 border-yellow-200'
+                    ? 'bg-emerald-50 text-emerald-700'
+                    : 'bg-amber-50 text-amber-800'
                 }`}
               >
                 {data.isEligible ? 'Eligible to Apply' : 'Requirements Pending'}
@@ -249,9 +249,13 @@ export const EligibilityCard: React.FC = () => {
               </div>
               <span className="text-sm font-semibold text-slate-900">
                 {data.studentAcademicSummary.hasDisciplinaryAction ? (
-                  <span className="text-red-600">Action Pending</span>
+                  <span className="inline-block text-[11px] font-medium px-2 py-0.5 rounded-full bg-rose-50 text-rose-700">
+                    Action Pending
+                  </span>
                 ) : (
-                  <span className="text-green-600">Clean Standing</span>
+                  <span className="inline-block text-[11px] font-medium px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">
+                    Clean Standing
+                  </span>
                 )}
               </span>
             </div>

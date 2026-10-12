@@ -229,7 +229,7 @@ export const AssessmentManager: React.FC = () => {
               <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 Assessment & Milestone Manager
               </h1>
-              <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
                 Faculty Portal
               </span>
             </div>
@@ -299,10 +299,10 @@ export const AssessmentManager: React.FC = () => {
 
           {selectedProject && (
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono font-medium px-3 py-1 rounded-md bg-slate-50 border border-slate-200 text-slate-700">
+              <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
                 Capacity: {selectedProject.currentStudents} / {selectedProject.maxStudents}
               </span>
-              <span className="text-[11px] uppercase font-bold px-3 py-1 rounded-md bg-green-100 text-green-800 border border-green-200">
+              <span className="text-[11px] uppercase font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700">
                 {selectedProject.status}
               </span>
             </div>
@@ -340,7 +340,7 @@ export const AssessmentManager: React.FC = () => {
                   {/* Milestone Card Header */}
                   <div className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 bg-slate-50/50">
                     <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-md bg-blue-50 border border-blue-200 flex items-center justify-center font-bold text-xs text-blue-700 font-mono">
+                      <span className="w-8 h-8 rounded-md bg-slate-100 flex items-center justify-center font-semibold text-xs text-slate-700 font-mono">
                         #{index + 1}
                       </span>
                       <div>
@@ -430,15 +430,15 @@ export const AssessmentManager: React.FC = () => {
 
                                   <td className="py-3.5 px-3">
                                     {sub.status === 'late' ? (
-                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 border border-yellow-200 flex items-center gap-1 w-fit">
-                                        <Clock className="w-2.5 h-2.5 text-yellow-600" /> Late
+                                      <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 flex items-center gap-1 w-fit">
+                                        <Clock className="w-2.5 h-2.5 text-amber-600" /> Late
                                       </span>
                                     ) : sub.status === 'graded' ? (
-                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-green-100 text-green-800 border border-green-200 flex items-center gap-1 w-fit">
-                                        <Award className="w-2.5 h-2.5 text-green-600" /> Graded
+                                      <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 flex items-center gap-1 w-fit">
+                                        <Award className="w-2.5 h-2.5 text-emerald-600" /> Graded
                                       </span>
                                     ) : (
-                                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 border border-blue-200 flex items-center gap-1 w-fit">
+                                      <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 flex items-center gap-1 w-fit">
                                         On Time
                                       </span>
                                     )}

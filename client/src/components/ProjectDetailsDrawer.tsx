@@ -72,19 +72,19 @@ export const ProjectDetailsDrawer: React.FC<ProjectDetailsDrawerProps> = ({
 
   const badges = (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+      <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
         {project.domain}
       </span>
-      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
+      <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
         {project.courseType}
       </span>
       <span
-        className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border ${
+        className={`text-[11px] font-medium px-2.5 py-0.5 rounded-full ${
           project.status === 'allocated'
-            ? 'bg-purple-100 text-purple-800 border-purple-200'
+            ? 'bg-purple-50 text-purple-800'
             : project.status === 'draft'
-            ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
-            : 'bg-green-100 text-green-800 border-green-200'
+            ? 'bg-amber-50 text-amber-800'
+            : 'bg-emerald-50 text-emerald-700'
         }`}
       >
         {project.status === 'allocated' ? 'Allocated' : project.status === 'draft' ? 'Draft' : 'Accepting Applications'}
@@ -119,7 +119,7 @@ export const ProjectDetailsDrawer: React.FC<ProjectDetailsDrawerProps> = ({
             Apply for Project
           </button>
         ) : userRole === 'student' && availableSlots === 0 ? (
-          <span className="text-xs font-semibold text-slate-400 px-3 py-1.5 rounded-md bg-slate-100 border border-slate-200">
+          <span className="text-[11px] font-medium text-slate-600 px-2.5 py-1 rounded-full bg-slate-100">
             Capacity Filled
           </span>
         ) : null}
@@ -205,7 +205,7 @@ export const ProjectDetailsDrawer: React.FC<ProjectDetailsDrawerProps> = ({
             </div>
           )}
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
               Faculty Mentor / Principal Investigator
             </span>
             <h3 className="text-sm font-bold text-slate-900 mt-0.5">
@@ -228,9 +228,8 @@ export const ProjectDetailsDrawer: React.FC<ProjectDetailsDrawerProps> = ({
           {techStack.map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200 flex items-center gap-1 shadow-2xs"
+              className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-100 text-slate-700"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
               {tech}
             </span>
           ))}
@@ -283,16 +282,16 @@ export const ProjectDetailsDrawer: React.FC<ProjectDetailsDrawerProps> = ({
             >
               <div className="flex items-center justify-between gap-2 mb-1">
                 <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-md bg-blue-50 text-blue-700 border border-blue-200 flex items-center justify-center text-[10px] font-bold font-mono">
+                  <span className="w-5 h-5 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center text-[10px] font-semibold font-mono">
                     {idx + 1}
                   </span>
                   <span className="text-xs font-bold text-slate-900">{m.title}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-slate-100 text-slate-600">
                     {m.deadline}
                   </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                  <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">
                     {m.weightage}
                   </span>
                 </div>

@@ -118,8 +118,8 @@ export const AnalyticsDashboard: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-slate-200">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <BarChart3 className="w-5 h-5 text-blue-600" />
-              <span className="text-xs uppercase font-bold tracking-widest text-blue-600">
+              <BarChart3 className="w-4 h-4 text-slate-500" />
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
                 Module 16 • Executive Intelligence
               </span>
             </div>
@@ -388,7 +388,7 @@ export const AnalyticsDashboard: React.FC = () => {
                     <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
                       <Lock className="w-4 h-4 text-yellow-600" /> Coordinator Grade Release Desk
                     </h3>
-                    <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 border border-yellow-200">
+                    <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
                       Module 16
                     </span>
                   </div>
@@ -406,10 +406,10 @@ export const AnalyticsDashboard: React.FC = () => {
                           <div className="flex items-center gap-2">
                             <span className="font-bold text-slate-900">{proj.title}</span>
                             <span
-                              className={`text-[9px] uppercase font-bold px-2 py-0.5 rounded-md border ${
+                              className={`text-[11px] font-medium px-2 py-0.5 rounded-full ${
                                 proj.status === 'closed'
-                                  ? 'bg-green-100 text-green-800 border-green-200'
-                                  : 'bg-blue-50 text-blue-700 border-blue-200'
+                                  ? 'bg-emerald-50 text-emerald-700'
+                                  : 'bg-blue-50 text-blue-700'
                               }`}
                             >
                               {proj.status}
@@ -422,7 +422,7 @@ export const AnalyticsDashboard: React.FC = () => {
 
                         <div>
                           {proj.status === 'closed' ? (
-                            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-green-700 bg-green-50 px-3 py-1.5 rounded-md border border-green-200">
+                            <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
                               <CheckCircle2 className="w-3.5 h-3.5" /> Grades Released
                             </span>
                           ) : (

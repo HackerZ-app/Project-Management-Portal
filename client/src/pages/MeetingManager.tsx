@@ -200,8 +200,8 @@ export const MeetingManager: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-slate-200">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-5 h-5 text-blue-600" />
-              <span className="text-xs uppercase font-bold tracking-widest text-blue-600">
+              <Calendar className="w-4 h-4 text-slate-500" />
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
                 Module 10 & 11 • Mentorship Workspace
               </span>
             </div>
@@ -284,9 +284,9 @@ export const MeetingManager: React.FC = () => {
             {/* Upcoming / Scheduled Meetings */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Clock className="w-4 h-4 text-blue-600" />
+                <Clock className="w-4 h-4 text-slate-500" />
                 <h2 className="text-base font-bold text-slate-900">Scheduled Sync Sessions</h2>
-                <span className="text-xs px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 font-semibold border border-blue-200">
+                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
                   {scheduledMeetings.length}
                 </span>
               </div>
@@ -307,7 +307,7 @@ export const MeetingManager: React.FC = () => {
                           <h3 className="font-bold text-slate-900 text-sm leading-snug">
                             {meeting.title}
                           </h3>
-                          <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 border border-blue-200">
+                          <span className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700">
                             Scheduled
                           </span>
                         </div>
@@ -346,9 +346,9 @@ export const MeetingManager: React.FC = () => {
             {/* Historical Completed Meetings & Minutes */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <CheckCircle2 className="w-4 h-4 text-green-600" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <h2 className="text-base font-bold text-slate-900">Completed Meetings & Minutes</h2>
-                <span className="text-xs px-2 py-0.5 rounded-md bg-green-100 text-green-800 border border-green-200 font-semibold">
+                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
                   {completedMeetings.length}
                 </span>
               </div>
@@ -368,7 +368,7 @@ export const MeetingManager: React.FC = () => {
                         <div>
                           <div className="flex items-center gap-2">
                             <h3 className="font-bold text-slate-900 text-sm">{meeting.title}</h3>
-                            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-green-100 text-green-800 border border-green-200">
+                            <span className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700">
                               Completed
                             </span>
                           </div>

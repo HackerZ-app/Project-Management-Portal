@@ -134,7 +134,7 @@ export const ApplicationReview: React.FC = () => {
               <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                 Application Review Workspace
               </h1>
-              <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
                 Faculty Portal
               </span>
             </div>
@@ -167,11 +167,11 @@ export const ApplicationReview: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Column 1: Pending Review */}
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 rounded-md bg-yellow-50 border border-yellow-200 text-yellow-800">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-amber-50 text-amber-900 border border-slate-200">
               <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-yellow-600" /> Pending Review
+                <Clock className="w-4 h-4 text-amber-700" /> Pending Review
               </span>
-              <span className="text-xs font-mono font-bold bg-yellow-100 px-2 py-0.5 rounded-md">
+              <span className="text-[11px] font-mono font-semibold bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full">
                 {pendingApps.length}
               </span>
             </div>
@@ -193,7 +193,7 @@ export const ApplicationReview: React.FC = () => {
                   >
                     {/* Project & Domain */}
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+                      <span className="text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
                         {app.project.domain}
                       </span>
                       <h3 className="font-bold text-slate-900 text-sm mt-1.5 line-clamp-2">
@@ -269,11 +269,11 @@ export const ApplicationReview: React.FC = () => {
 
           {/* Column 2: Approved / Allocated */}
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 rounded-md bg-green-50 border border-green-200 text-green-800">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-emerald-50 text-emerald-900 border border-slate-200">
               <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-green-600" /> Approved & Allocated
+                <CheckCircle2 className="w-4 h-4 text-emerald-700" /> Approved & Allocated
               </span>
-              <span className="text-xs font-mono font-bold bg-green-100 px-2 py-0.5 rounded-md border border-green-200">
+              <span className="text-[11px] font-mono font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full">
                 {approvedApps.length}
               </span>
             </div>
@@ -286,10 +286,10 @@ export const ApplicationReview: React.FC = () => {
               approvedApps.map((app) => (
                 <div
                   key={app._id}
-                  className="p-5 rounded-xl bg-white border border-green-200 shadow-sm space-y-3"
+                  className="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-3"
                 >
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-green-100 text-green-800 border border-green-200">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700">
                       Capacity Reserved
                     </span>
                     <h3 className="font-bold text-slate-900 text-sm mt-1.5 line-clamp-2">
@@ -321,11 +321,11 @@ export const ApplicationReview: React.FC = () => {
 
           {/* Column 3: Rejected / Withdrawn */}
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 rounded-md bg-slate-100 border border-slate-200 text-slate-600">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-slate-100 text-slate-700 border border-slate-200">
               <span className="text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <XCircle className="w-4 h-4 text-slate-500" /> Rejected / Withdrawn
               </span>
-              <span className="text-xs font-mono font-bold bg-slate-200 px-2 py-0.5 rounded-md text-slate-700 border border-slate-300">
+              <span className="text-[11px] font-mono font-semibold bg-slate-200 text-slate-800 px-2 py-0.5 rounded-full">
                 {rejectedApps.length}
               </span>
             </div>

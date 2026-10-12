@@ -161,12 +161,12 @@ export const SubmissionModal: React.FC<SubmissionModalProps> = ({
         {/* Modal Header */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+            <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
               Milestone Submission
             </span>
             {isLate && (
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-100 text-red-800 border border-red-200 flex items-center gap-1">
-                <Clock className="w-3 h-3 text-red-600" /> Past Deadline
+              <span className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 flex items-center gap-1">
+                <Clock className="w-3 h-3 text-rose-600" /> Past Deadline
               </span>
             )}
           </div>

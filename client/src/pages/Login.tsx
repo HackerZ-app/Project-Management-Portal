@@ -6,7 +6,7 @@ import { useAuthStore } from '../store/useAuthStore';
 import { Alert } from '../components/Alert';
 import { UserRole } from '../types/auth.types';
 
-const LOGO_URL = 'https://upload.wikimedia.org/wikipedia/en/f/f5/SRM_University%2C_Andhra_Pradesh_logo.png';
+const LOGO_URL = '/logo.png';
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -48,8 +48,8 @@ export const Login: React.FC = () => {
         setDevName('Arjun Kumar');
         break;
       case 'faculty':
-        setDevEmail('prof.ramesh@srmap.edu.in');
-        setDevName('Dr. Ramesh Babu');
+        setDevEmail('prof.sambitkumar.m@srmap.edu.in');
+        setDevName('Dr. Sambit Kumar');
         break;
       case 'coordinator':
         setDevEmail('coordinator.cse@srmap.edu.in');
@@ -79,7 +79,7 @@ export const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden font-sans">
-      
+
       {/* Top Left Navigation Back */}
       <div className="absolute top-6 left-6 z-20">
         <Link to="/" className="flex items-center gap-2 text-slate-500 hover:text-slate-800 transition-colors font-medium text-sm">
@@ -90,7 +90,7 @@ export const Login: React.FC = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 mb-6">
         <div className="flex justify-center">
           <div className="w-20 h-20 rounded-full overflow-hidden border-[3px] border-white shadow-soft flex-shrink-0 bg-white">
-            <img src={LOGO_URL} alt="SRM AP Logo" className="w-full h-full object-cover p-1.5" />
+            <img src={LOGO_URL} alt="SRM AP Logo" className="w-full h-full object-contain p-1" />
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold tracking-tight text-slate-900">
@@ -103,7 +103,7 @@ export const Login: React.FC = () => {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4">
         <div className="bg-white py-8 px-6 sm:px-10 rounded-3xl shadow-float border border-slate-100">
-          
+
           <div className="mb-6 p-3 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center gap-3 text-xs text-indigo-800 shadow-sm">
             <ShieldCheck className="w-5 h-5 text-indigo-600 shrink-0" />
             <span>
@@ -138,22 +138,21 @@ export const Login: React.FC = () => {
                 <span className="text-xs font-bold uppercase tracking-wider text-coreshift-orange flex items-center gap-1.5">
                   <Code2 className="w-4 h-4" /> Dev Sandbox
                 </span>
-                <span className="text-[10px] font-bold bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full">
+                <span className="text-[11px] font-medium bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full">
                   Local Dev Only
                 </span>
               </div>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
                 {(['student', 'faculty', 'coordinator', 'admin'] as UserRole[]).map((role) => (
                   <button
                     key={role}
                     type="button"
                     onClick={() => handleDevRoleChange(role)}
-                    className={`py-1.5 text-xs capitalize rounded-xl font-medium transition-all ${
-                      devRole === role
+                    className={`py-1.5 text-xs capitalize rounded-xl font-medium transition-all ${devRole === role
                         ? 'bg-slate-900 text-white shadow-md'
                         : 'bg-slate-50 text-slate-500 hover:text-slate-800 border border-slate-200 hover:border-slate-300'
-                    }`}
+                      }`}
                   >
                     {role}
                   </button>

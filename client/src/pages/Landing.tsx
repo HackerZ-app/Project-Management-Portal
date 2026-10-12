@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Lightbulb, Shield, Users, BookOpen } from 'lucide-react';
+import { Check, Lightbulb, Shield, Users, BookOpen, GraduationCap, Rocket } from 'lucide-react';
 
-const LOGO_URL = 'https://upload.wikimedia.org/wikipedia/en/f/f5/SRM_University%2C_Andhra_Pradesh_logo.png';
+const LOGO_URL = '/logo.png';
 
 export const Landing: React.FC = () => {
   return (
@@ -13,27 +13,16 @@ export const Landing: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 flex-shrink-0 bg-white">
-              <img src={LOGO_URL} alt="SRM AP Logo" className="w-full h-full object-cover p-1" />
+              <img src={LOGO_URL} alt="SRM AP Logo" className="w-full h-full object-contain p-0.5" />
             </div>
             <span className="font-bold text-lg tracking-tight text-slate-800">SRM<span className="text-coreshift-blue">AP</span> Projects</span>
           </div>
 
-          {/* Links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-            <a href="#" className="hover:text-slate-900 transition-colors">About</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">Guidelines</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">Faculty</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">Contact</a>
-          </div>
-
           {/* Actions */}
-          <div className="flex items-center gap-4">
-            <Link to="/login" className="text-sm font-medium text-slate-700 hover:text-slate-900">
+          <div className="flex items-center">
+            <Link to="/login" className="px-5 py-2 rounded-full bg-slate-900 text-white text-sm font-medium hover:bg-slate-800 transition-all shadow-md">
               Sign in
             </Link>
-            <button className="px-5 py-2 rounded-full bg-slate-900 text-white text-sm font-medium hover:bg-slate-800 transition-all shadow-md">
-              Request a Demo
-            </button>
           </div>
         </div>
       </nav>
@@ -83,8 +72,8 @@ export const Landing: React.FC = () => {
           </div>
 
           {/* Floating Block 4 (Bottom Right) */}
-          <div className="absolute bottom-[10%] right-[25%] z-10 w-16 h-16 rounded-2xl shadow-soft overflow-hidden border-4 border-white animate-float-delayed">
-             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Student" className="w-full h-full object-cover" />
+          <div className="absolute bottom-[10%] right-[25%] z-10 w-16 h-16 bg-emerald-500 rounded-2xl shadow-soft flex items-center justify-center animate-float-delayed">
+            <Rocket className="w-8 h-8 text-white" />
           </div>
 
           {/* Floating Block 5 (Far Right) */}
@@ -92,9 +81,9 @@ export const Landing: React.FC = () => {
             <BookOpen className="w-8 h-8 text-slate-800" />
           </div>
 
-          {/* Floating Block 6 (Far Left User) */}
-          <div className="absolute top-[40%] left-[5%] z-10 w-24 h-24 rounded-3xl shadow-soft overflow-hidden border-4 border-white animate-float">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Student" className="w-full h-full object-cover" />
+          {/* Floating Block 6 (Far Left) */}
+          <div className="absolute top-[40%] left-[5%] z-10 w-20 h-20 bg-coreshift-orange rounded-2xl shadow-soft flex items-center justify-center animate-float">
+            <GraduationCap className="w-10 h-10 text-white" />
           </div>
         </div>
 
